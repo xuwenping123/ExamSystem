@@ -6,18 +6,21 @@ import javax.persistence.Table;
 
 import models.user.Student;
 import models.user.Teacher;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
 @Table(name="t_testdetail")
 public class TestDetail extends Model{
 
-	public TestRecord testRecord;
+	@Required
+	public long testRecord_id;
 	
-	public Teacher teacher;
+	@Required
+	public long teacher_id;
 	
-	public Student student;
+	@Required
+	public long student_id;
 	
-	@Column(name="totalScore")
 	public int totalScore;
 }

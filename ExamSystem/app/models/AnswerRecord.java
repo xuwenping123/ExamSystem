@@ -12,17 +12,20 @@ import play.db.jpa.Model;
 @Table(name="t_answer_record")
 public class AnswerRecord extends Model{
 	
-	public Student student;
+	@Required
+	public long student_id;
 	
-	public Paper paper;
+	@Required
+	public long paper_id;
 	
-	public TestRecord testRecord;
+	@Required
+	public long testRecord_id;
 	
-	public Question question;
+	@Required
+	public long question_id;
 	
-	@Column(name="result")
 	public String result;
 	
-	@Column(name="score")
 	public int score;
+
 }

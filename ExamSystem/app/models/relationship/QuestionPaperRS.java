@@ -5,17 +5,21 @@ import javax.persistence.Table;
 
 import models.Paper;
 import models.Question;
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
 @Table(name="t_question_paper")
 public class QuestionPaperRS extends Model{
 
-	public Paper paper;
-	public Question question;
+	@Required
+	public long paper_id;
 	
-	public QuestionPaperRS(Paper paper, Question question) {
-		this.paper = paper;
-		this.question = question;
+	@Required
+	public long question_id;
+	
+	public QuestionPaperRS(long paper_id, long question_id) {
+		this.paper_id = paper_id;
+		this.question_id = question_id;
 	}
 }

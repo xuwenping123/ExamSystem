@@ -15,26 +15,24 @@ import play.db.jpa.Model;
 public class Question extends Model{
 
 	@Required
-	@Column(name="content")
 	public String content;
 	
 	@Required
-	@Column(name="answer")
 	public String answer;
 	
 	@Required
-	@Column(name="type")
 	public int type;
 	
-	public Subject subject;
+	@Required
+	public long subject_id;
 	
 	public Question() {
 	}
 	
-	public Question(String content, String answer, int type, Subject subject) {
+	public Question(String content, String answer, int type, long subject_id) {
 		this.content = content;
 		this.answer = answer;
 		this.type = type;
-		this.subject = subject;
+		this.subject_id = subject_id;
 	}
 }

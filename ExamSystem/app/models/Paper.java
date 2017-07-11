@@ -7,26 +7,27 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
 @Table(name="t_paper")
 public class Paper extends Model{
 
-	@Column(name="remark")
 	public String remark;
 	
-	public Subject subject;
+	@Required
+	public long subject_id;
 	
 	public Paper() {
 	}
 	
-	public Paper(String remark, Subject subject) {
+	public Paper(String remark, long subject_id) {
 		this.remark = remark;
-		this.subject = subject;
+		this.subject_id = subject_id;
 	}
 	
-	public Paper(Subject subject) {
-		this.subject = subject;
+	public Paper(long subject_id) {
+		this.subject_id = subject_id;
 	}
 }

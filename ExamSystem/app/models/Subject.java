@@ -11,10 +11,8 @@ import play.db.jpa.Model;
 public class Subject extends Model{
 	
 	@Required
-	@Column(name="title")
 	public String title;
 	
-	@Column(name="remark")
 	public String remark;
 	
 	public Subject() {

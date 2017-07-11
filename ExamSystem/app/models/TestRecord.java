@@ -14,37 +14,33 @@ import play.db.jpa.Model;
 public class TestRecord extends Model{
 	
 	@Required
-	@Column(name="beginTime")
 	public Date beginTime;
 	
 	@Required
-	@Column(name="endTime")
 	public Date endTime;
 	
 	@Required
-	@Column(name="status")
 	public int status;
 	
-	@Column(name="remark")
 	public String remark;
 	
-	public Paper paper;
+	public long paper_id;
 	
 	public TestRecord() {
 	}
 	
-	public TestRecord(Date beginTime, Date endTime, int status, String remark, Paper paper) {
+	public TestRecord(Date beginTime, Date endTime, int status, String remark, long paper_id) {
 		this.beginTime = beginTime;
 		this.endTime = endTime;
 		this.status = status;
 		this.remark = remark;
-		this.paper = paper;
+		this.paper_id = paper_id;
 	}
 	
-	public TestRecord(Date beginTime, Date endTime, int status, Paper paper) {
+	public TestRecord(Date beginTime, Date endTime, int status, long paper_id) {
 		this.beginTime = beginTime;
 		this.endTime = endTime;
 		this.status = status;
-		this.paper = paper;
+		this.paper_id = paper_id;
 	}
 }

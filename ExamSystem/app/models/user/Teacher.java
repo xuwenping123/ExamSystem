@@ -12,10 +12,8 @@ import play.db.jpa.Model;
 public class Teacher extends Model{
 
 	@Required
-	@Column(name="name")
 	public String name;
 	
-	@Column(name="age")
 	public int age;
 	
 	public Teacher() {

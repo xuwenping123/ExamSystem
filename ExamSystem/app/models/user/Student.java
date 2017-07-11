@@ -11,10 +11,8 @@ import play.db.jpa.Model;
 public class Student extends Model{
 
 	@Required
-	@Column(name="name")
 	public String name;
 	
-	@Column(name="age")
 	public int age;
 	
 	public Student() {
