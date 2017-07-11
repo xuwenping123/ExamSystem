@@ -1,14 +1,15 @@
-package models;
+package models.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
-@Table(name="t_student")
-public class Student extends Model{
+@Table(name="t_teacher")
+public class Teacher extends Model{
 
 	@Required
 	@Column(name="name")
@@ -17,7 +18,15 @@ public class Student extends Model{
 	@Column(name="age")
 	public int age;
 	
-	public Student() {
-		
+	public Teacher() {
+	}
+	
+	public Teacher(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+	
+	public Teacher(String name) {
+		this.name = name;
 	}
 }
