@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2017-07-11 13:42:54
+Date: 2017-07-11 15:49:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `t_answer_record` (
   `testRecord_id` bigint(20) NOT NULL,
   `question_id` bigint(20) NOT NULL,
   `result` varchar(50) DEFAULT NULL,
-  `score` int(5) NOT NULL,
+  `score` int(5) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `student_id` (`student_id`),
   KEY `paper_id` (`paper_id`),
