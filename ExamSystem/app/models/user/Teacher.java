@@ -16,6 +16,10 @@ public class Teacher extends Model{
 	
 	public int age;
 	
+	public String username;
+	
+	public String password;
+	
 	public Teacher() {
 	}
 	

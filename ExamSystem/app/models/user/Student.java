@@ -15,6 +15,10 @@ public class Student extends Model{
 	
 	public int age;
 	
+	public String username;
+	
+	public String password;
+	
 	public Student() {
 	}
 	
