@@ -35,4 +35,12 @@ public class Question extends Model{
 		this.type = type;
 		this.subject_id = subject_id;
 	}
+	
+	public Question(long id, String content, String answer, int type, long subject_id) {
+		this.id = id;
+		this.content = content;
+		this.answer = answer;
+		this.type = type;
+		this.subject_id = subject_id;
+	}
 }
