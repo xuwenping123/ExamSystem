@@ -1,7 +1,6 @@
 package controllers;
 
 import java.util.List;
-
 import models.Question;
 import net.sf.ehcache.hibernate.HibernateUtil;
 import play.db.jpa.JPABase;

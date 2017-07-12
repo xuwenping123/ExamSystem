@@ -1,0 +1,10 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<ul>
+	#{list items:subjects, as:'subject'}
+		<li>${subject.title}</li>
+		<li>${subject.remark}</li>
+		<li>${subject.status}</li>
+	#{/list}
+</ul>

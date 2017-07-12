@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2017-07-11 15:49:42
+Date: 2017-07-12 10:59:22
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,5 +27,5 @@ CREATE TABLE `t_question` (
   `subject_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `subject_id` (`subject_id`),
-  CONSTRAINT `subject_id` FOREIGN KEY (`subject_id`) REFERENCES `t_subject` (`id`)
+  CONSTRAINT `subject_id` FOREIGN KEY (`subject_id`) REFERENCES `t_subject` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

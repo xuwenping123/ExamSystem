@@ -17,4 +17,11 @@ public class EnumUtil {
 		/** 问答题 */
 		wenDaQuestion,
 	}
+	
+	public enum subjectStatusType {
+		/** 科目启用*/
+		subjectOpen,
+		/** 科目禁用 */
+		subjectClose
+	}
 }
