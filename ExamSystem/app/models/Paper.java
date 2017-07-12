@@ -27,7 +27,12 @@ public class Paper extends Model{
 		this.subject_id = subject_id;
 	}
 	
-	public Paper(long subject_id) {
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public void setSubject_id(long subject_id) {
 		this.subject_id = subject_id;
 	}
+	
 }

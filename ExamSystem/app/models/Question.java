@@ -36,11 +36,20 @@ public class Question extends Model{
 		this.subject_id = subject_id;
 	}
 	
-	public Question(long id, String content, String answer, int type, long subject_id) {
-		this.id = id;
+	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public void setAnswer(String answer) {
 		this.answer = answer;
+	}
+
+	public void setType(int type) {
 		this.type = type;
+	}
+
+	public void setSubject_id(long subject_id) {
 		this.subject_id = subject_id;
 	}
+	
 }

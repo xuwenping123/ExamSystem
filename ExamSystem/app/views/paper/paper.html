@@ -1,0 +1,14 @@
+#{if paper != null}
+	<li>${paper.remark}</li>
+	<li>${paper.subject_id}</li>
+#{/if}
+
+#{if papers != null}
+<ul>
+	#{list items:papers, as:'paper'}
+		<li>${paper.remark}</li>
+		<li>${paper.subject_id}</li>
+		<li>---------我是分割线------------</li>
+	#{/list}
+</ul>
+#{/if}

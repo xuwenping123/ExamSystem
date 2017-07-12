@@ -2,3 +2,15 @@
 #{set title:'Home' /}
 
 OK
+
+#{if question != null}
+<ul>
+	<li>${question.content}</li>
+	<li>${question.answer}</li>
+	<li>${question.type}</li>
+</ul>
+#{/if}
+
+#{if questions != null}
+	
+#{/if}

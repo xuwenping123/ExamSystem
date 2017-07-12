@@ -1,0 +1,13 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if questions != null}
+<ul>
+	#{list items:questions, as:'question'}
+		<li>${question.content}</li>
+		<li>${question.answer}</li>
+		<li>${question.type}</li>
+		<li>---------我是分割线------------</li>
+	#{/list}
+</ul>
+#{/ if}
