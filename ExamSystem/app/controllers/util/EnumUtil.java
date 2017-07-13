@@ -41,4 +41,16 @@ public class EnumUtil {
 		/** 考试禁用  1*/
 		testRecordClose
 	}
+	
+	/**
+	 * 登录类型
+	 * @author think
+	 *
+	 */
+	public enum loginType {
+		/** 老师 */
+		teacher,
+		/** 学生 */
+		student
+	}
 }

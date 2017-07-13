@@ -1,0 +1,65 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<!-- <p>您的登录类型是： ${session.loginType}</p> -->
+<p></p>
+	<table class="table">
+		<caption><h4>您的个人信息如下:<h4></caption>
+		<thead>
+			<tr>
+				<!-- <th>产品</th>
+				<th>付款日期</th> -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="danger">
+				<td>您的登录类型是:</td>
+				<td>${session.loginType} <br>登录类型0表示教师， 1表示学生</td>
+			</tr>
+			<tr class="active">
+				<td>id</td>
+				<td>${student.id}</td>
+			</tr>
+			<tr class="success">
+				<td>name</td>
+				<td>${student.name}</td>
+			</tr>
+			<tr  class="warning">
+				<td>age</td>
+				<td>${student.age}</td>
+			</tr>
+			<tr  class="danger">
+				<td>username</td>
+				<td>${student.username}</td>
+			</tr>
+			<tr class="warning">
+				<td><a href="#">编辑个人信息</a></td>
+				<td><a href="#">刷新</a></td>
+			</tr>
+		</tbody>
+	</table>
+<!-- <p>id: ${student.id}</p>
+<p>name: ${student.name}</p>
+<p>age:${student.age}</p>
+<p>username: ${student.username}</p> -->
+
+<br/><br/>
+<h4>您将要参与的考试如下:</h4><br/><br/>
+<ul class="list-group">
+    <li class="list-group-item">免费域名注册</li>
+    <li class="list-group-item">免费 Window 空间托管</li>
+    <li class="list-group-item">图像的数量</li>
+    <li class="list-group-item">24*7 支持</li>
+    <li class="list-group-item">每年更新成本</li>
+</ul>
+
+<br/><br/>
+<h4>您已经参加过的考试如下:</h4><br/><br/>
+<ul class="list-group">
+    <li class="list-group-item">免费域名注册</li>
+    <li class="list-group-item">免费 Window 空间托管</li>
+    <li class="list-group-item">图像的数量</li>
+    <li class="list-group-item">24*7 支持</li>
+    <li class="list-group-item">每年更新成本</li>
+</ul>
+
