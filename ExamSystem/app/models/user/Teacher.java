@@ -31,4 +31,11 @@ public class Teacher extends Model{
 	public Teacher(String name) {
 		this.name = name;
 	}
+	
+	public Teacher(String name, int age, String username, String password) {
+		this.name = name;
+		this.age = age;
+		this.username = username;
+		this.password = password;
+	}
 }

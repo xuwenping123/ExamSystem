@@ -1,6 +1,5 @@
 package models.user;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import play.data.validation.Required;
@@ -29,5 +28,12 @@ public class Student extends Model{
 	
 	public Student(String name) {
 		this.name = name;
+	}
+	
+	public Student(String name, int age, String username, String password) {
+		this.name = name;
+		this.age = age;
+		this.username = username;
+		this.password = password;
 	}
 }
