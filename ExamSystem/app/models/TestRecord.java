@@ -37,10 +37,24 @@ public class TestRecord extends Model{
 		this.paper_id = paper_id;
 	}
 	
-	public TestRecord(Date beginTime, Date endTime, int status, long paper_id) {
+	public void setBeginTime(Date beginTime) {
 		this.beginTime = beginTime;
+	}
+
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+
+	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public void setPaper_id(long paper_id) {
 		this.paper_id = paper_id;
 	}
+	
 }

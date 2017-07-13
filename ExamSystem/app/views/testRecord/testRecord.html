@@ -1,0 +1,21 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if testRecord != null}
+	<li>${testRecord.beginTime}</li>
+	<li>${testRecord.endTime}</li>
+	<li>${testRecord.status}</li>
+	<li>${testRecord.remark}</li>
+	<li>${testRecord.paper_id}</li>
+#{/ if}
+
+#{if testRecords != null}
+	#{list items:testRecords, as:'testRecord'}
+		<li>${testRecord.beginTime}</li>
+		<li>${testRecord.endTime}</li>
+		<li>${testRecord.status}</li>
+		<li>${testRecord.remark}</li>
+		<li>${testRecord.paper_id}</li>
+		<li>--------我是分割线-----------</li>
+	#{/list}
+#{/if}

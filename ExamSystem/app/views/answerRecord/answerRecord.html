@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if answerRecord != null}
+	<li>${answerRecord.student_id}</li>
+	<li>${answerRecord.paper_id}</li>
+	<li>${answerRecord.testRecord_id}</li>
+	<li>${answerRecord.question_id}</li>
+	<li>${answerRecord.result}</li>
+	<li>${answerRecord.score}</li>
+#{/ if}
+
+#{if answerRecords != null}
+	#{list items:answerRecords, as:'answerRecord'}
+		<li>${answerRecord.student_id}</li>
+		<li>${answerRecord.paper_id}</li>
+		<li>${answerRecord.testRecord_id}</li>
+		<li>${answerRecord.question_id}</li>
+		#{if answerRecord.result != null }
+		<li>${answerRecord.result}</li>
+		#{/if}
+		#{if answerRecord.score != null}
+		<li>${answerRecord.score}</li>
+		#{/if}
+		<li>---------我是分割线------------</li>
+	#{/list}
+#{/if}

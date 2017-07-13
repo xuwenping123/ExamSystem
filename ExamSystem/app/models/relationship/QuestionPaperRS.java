@@ -20,6 +20,8 @@ public class QuestionPaperRS extends Model{
 	@Required
 	public long question_id;
 	
+	@Required
+	/** 单题满分数 */
 	public int question_score;
 	
 	public QuestionPaperRS(long paper_id, long question_id, int question_score) {

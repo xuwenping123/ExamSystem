@@ -1,6 +1,9 @@
 package controllers;
 
 import java.util.List;
+
+import models.Question;
+import models.TestDetail;
 import models.relationship.QuestionPaperRS;
 import play.Logger;
 import play.mvc.Controller;
@@ -23,16 +26,15 @@ public class QuestionPaperRsController extends Controller{
 	/**
 	 * 对试题与试卷进行解绑 http.get paper_id question_id
 	 */
-	public static void unBindQuestionPaper() {
-		long paper_id = Long.valueOf(params.get("paper_id"));
-		long question_id = Long.valueOf(params.get("question_id"));
+	public static void unBindQuestionPaper(long paper_id, long question_id) {
 		List<QuestionPaperRS> questionPaperRSs = QuestionPaperRS.find("paper_id = ? and question_id = ?", paper_id, question_id).fetch();
-		questionPaperRSs.get(0).delete();
+		QuestionPaperRS questionPaperRS = questionPaperRSs.get(0);
+		questionPaperRS.delete();
 	}
 	
 	/**
 	 * 获取单张试卷总分
-	 * @param paper_id
+	 * @param paper_id http.get
 	 */
 	public static void getAllScore(long paper_id) {
 		String query = "select sum(question_score) from QuestionPaperRS where paper_id = ?";

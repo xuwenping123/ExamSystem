@@ -1,0 +1,23 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+#{if testDetail != null}
+	<li>${testDetail.testRecord_id}</li>
+	<li>${testDetail.teacher_id}</li>
+	<li>${testDetail.student_id}</li>
+	#{if testDetail.totalScore != null}
+		<li>${testDetail.totalScore}</li>
+	#{/ if}
+#{/ if}
+
+#{if testDetails != null}
+	#{list items:testDetails, as:'testDetail'}
+	<li>${testDetail.testRecord_id}</li>
+	<li>${testDetail.teacher_id}</li>
+	<li>${testDetail.student_id}</li>
+	#{if testDetail.totalScore != null}
+		<li>${testDetail.totalScore}</li>
+	#{/ if}
+	<li>---------我是分割线------------</li>
+	#{/list}
+#{/if}
