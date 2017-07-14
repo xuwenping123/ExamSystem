@@ -1,9 +1,16 @@
 package controllers;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import models.Paper;
+import models.Subject;
+import models.TestDetail;
+import models.TestRecord;
 import models.user.Student;
 import models.user.Teacher;
+import models.vo.TestInfo;
 import play.mvc.Controller;
 /**
  * 控制登录模块
@@ -35,10 +42,62 @@ public class LoginController extends Controller {
 				Student student = students.get(0);
 				session.put("loginType", "1");
 				session.put("student", student);
-				render("users/student.html", student);
+				List<TestInfo> testInfos = getTestInfo2do(student.id);
+				List<TestInfo> testInfosDones = getTestInfodone(student.id);
+				render("users/student.html", student, testInfos, testInfosDones);
 			}
 			renderArgs.put("message", "登录失败，请重新登录");
 			render("Application/index.html");
 		}
+	}
+	
+	/**
+	 * 获取Student_id即将要参加的考试
+	 * @param student_id
+	 * @return	
+	 */
+	public static List<TestInfo> getTestInfo2do(long student_id) {
+		List<TestDetail> testDetails = TestDetail.find("student_id = ?", student_id).fetch();
+		List<TestInfo> testInfos = new ArrayList<TestInfo>();
+		Date now = new Date();
+		TestDetail testDetail;
+		TestRecord testRecord;
+		for (int i = 0; i < testDetails.size(); i++) {
+			testDetail = testDetails.get(i);
+			testRecord = TestRecord.findById(testDetail.testRecord_id);
+			if (now.before(testRecord.beginTime) == true) {
+				Paper paper = Paper.findById(testRecord.paper_id);
+				Teacher teacher = Teacher.findById(testDetail.teacher_id);
+				Student student = Student.findById(testDetail.student_id);
+				Subject subject = Subject.findById(paper.subject_id);
+				testInfos.add(new TestInfo(paper, teacher, student, subject, testRecord, testDetail));
+			} 
+		}
+		return testInfos;
+	}
+	
+	/**
+	 * 获取student_id 已经参加的考试
+	 * @param student_id
+	 * @return
+	 */
+	public static List<TestInfo> getTestInfodone(long student_id) {
+		List<TestDetail> testDetails = TestDetail.find("student_id = ?", student_id).fetch();
+		List<TestInfo> testInfos = new ArrayList<TestInfo>();
+		Date now = new Date();
+		TestDetail testDetail;
+		TestRecord testRecord;
+		for (int i = 0; i < testDetails.size(); i++) {
+			testDetail = testDetails.get(i);
+			testRecord = TestRecord.findById(testDetail.testRecord_id);
+			if (now.after(testRecord.endTime) == true) {
+				Paper paper = Paper.findById(testRecord.paper_id);
+				Teacher teacher = Teacher.findById(testDetail.teacher_id);
+				Student student = Student.findById(testDetail.student_id);
+				Subject subject = Subject.findById(paper.subject_id);
+				testInfos.add(new TestInfo(paper, teacher, student, subject, testRecord, testDetail));
+			} 
+		}
+		return testInfos;
 	}
 }

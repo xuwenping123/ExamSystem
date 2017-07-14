@@ -1,10 +1,96 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-OK
-</body>
-</html>
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<!-- <p>您的登录类型是： ${session.loginType}</p> -->
+<p></p>
+	<table class="table">
+		<caption><h4>您的个人信息如下:<h4></caption>
+		<thead>
+			<tr>
+				<!-- <th>产品</th>
+				<th>付款日期</th> -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="danger">
+				<td>您的登录类型是:</td>
+				<td>${session.loginType} <br>登录类型0表示教师， 1表示学生</td>
+			</tr>
+			<tr class="active">
+				<td>id</td>
+				<td>${teacher.id}</td>
+			</tr>
+			<tr class="success">
+				<td>name</td>
+				<td>${teacher.name}</td>
+			</tr>
+			<tr  class="warning">
+				<td>age</td>
+				<td>${teacher.age}</td>
+			</tr>
+			<tr  class="danger">
+				<td>username</td>
+				<td>${teacher.username}</td>
+			</tr>
+			<tr class="warning">
+				<td><a href="/TeacherController/editTeacher?id=${teacher.id}">编辑个人信息</a></td>
+				<td><a href="#">刷新</a></td>
+			</tr>
+		</tbody>
+	</table>
+	
+<!-- <br/><br/>
+<table class="table">
+	<h4>科目管理:</h4>
+	<thead>
+		<tr>
+			<th>考试科目</th>
+			<th>考试开始时间</th>
+			<th>考试结束时间</th>
+			<th>监考人</th>
+			<th>考试得分</th>
+			<th>查看试卷</th>
+		</tr>
+	</thead>
+	<tbody>
+			#{list items:testInfosDones, as:'testInfosDone'}
+			<tr>
+				<td>${testInfosDone.subject.title}</td>
+				<td>${testInfosDone.testRecord.beginTime}</td>
+				<td>${testInfosDone.testRecord.endTime}</td>
+				<td>${testInfosDone.teacher.name}</td>
+				<td>${testInfosDone.testDetail.totalScore}</td>
+				<td>查看试卷</td>
+			</tr>
+			#{/ list}
+	</tbody>
+</table>
+
+<br/><br/>
+<table class="table">
+	<h4>题库管理:</h4>
+	<thead>
+		<tr>
+			<th>考试科目</th>
+			<th>考试开始时间</th>
+			<th>考试结束时间</th>
+			<th>监考人</th>
+			<th>考试得分</th>
+			<th>查看试卷</th>
+		</tr>
+	</thead>
+	<tbody>
+			#{list items:testInfosDones, as:'testInfosDone'}
+			<tr>
+				<td>${testInfosDone.subject.title}</td>
+				<td>${testInfosDone.testRecord.beginTime}</td>
+				<td>${testInfosDone.testRecord.endTime}</td>
+				<td>${testInfosDone.teacher.name}</td>
+				<td>${testInfosDone.testDetail.totalScore}</td>
+				<td>查看试卷</td>
+			</tr>
+			#{/ list}
+	</tbody>
+</table> -->
+
+<br/><br/>

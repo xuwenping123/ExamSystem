@@ -1,0 +1,27 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<form action="/TeacherController/modifyTeacher" method="post">
+<fieldset >
+	id:<br><br>
+	<input type="text" name="id" value="${teacher.id}" readonly>
+	<br><br/>
+
+	name:<br><br>
+	<input type="text" name="name" value="${teacher.name}" required>
+	<br><br/>
+	
+	age:<br><br>
+	<input type="text" name="age" value="${teacher.age}">
+	<br><br/>
+
+	username:<br><br>
+	<input type="text" name="username" value="${teacher.username}" required>
+	<br><br/>
+	
+	password:<br><br>
+	<input type="password" name="password" value="${teacher.password}" required>
+	<br><br>
+	<input type="submit" name="subimt" value="确认提交">
+</fieldset>
+</form> 

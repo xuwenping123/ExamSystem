@@ -33,33 +33,62 @@
 				<td>${student.username}</td>
 			</tr>
 			<tr class="warning">
-				<td><a href="#">编辑个人信息</a></td>
+				<td><a href="/StudentController/editStudent?id=${student.id}">编辑个人信息</a></td>
 				<td><a href="#">刷新</a></td>
 			</tr>
 		</tbody>
 	</table>
-<!-- <p>id: ${student.id}</p>
-<p>name: ${student.name}</p>
-<p>age:${student.age}</p>
-<p>username: ${student.username}</p> -->
+<br/><br/>
+
+<table class="table">
+	<h4>您将要参与的考试如下:</h4>
+	<thead>
+		<tr>
+			<th>考试科目</th>
+			<th>考试开始时间</th>
+			<th>考试结束时间</th>
+			<th>监考人</th>
+			<th>进入考试</th>
+		</tr>
+	</thead>
+	<tbody>
+			#{list items:testInfos, as:'testInfo'}
+			<tr>
+				<td>${testInfo.subject.title}</td>
+				<td>${testInfo.testRecord.beginTime}</td>
+				<td>${testInfo.testRecord.endTime}</td>
+				<td>${testInfo.teacher.name}</td>
+				<td><a href="/PaperController/joinPaper?paper_id=${testInfo.paper.id}&teacher_id=${testInfo.teacher.id}&student_id=${testInfo.student.id}&subject_id=${testInfo.subject.id}&testRecord_id=${testInfo.testRecord.id}&testDetail_id=${testInfo.testDetail.id}">${testInfo.paper.remark}</a></td>
+			</tr>
+			#{/ list}
+	</tbody>
+</table>
 
 <br/><br/>
-<h4>您将要参与的考试如下:</h4><br/><br/>
-<ul class="list-group">
-    <li class="list-group-item">免费域名注册</li>
-    <li class="list-group-item">免费 Window 空间托管</li>
-    <li class="list-group-item">图像的数量</li>
-    <li class="list-group-item">24*7 支持</li>
-    <li class="list-group-item">每年更新成本</li>
-</ul>
+<table class="table">
+	<h4>您已经参加过的考试如下:</h4>
+	<thead>
+		<tr>
+			<th>考试科目</th>
+			<th>考试开始时间</th>
+			<th>考试结束时间</th>
+			<th>监考人</th>
+			<th>考试得分</th>
+			<th>查看试卷</th>
+		</tr>
+	</thead>
+	<tbody>
+			#{list items:testInfosDones, as:'testInfosDone'}
+			<tr>
+				<td>${testInfosDone.subject.title}</td>
+				<td>${testInfosDone.testRecord.beginTime}</td>
+				<td>${testInfosDone.testRecord.endTime}</td>
+				<td>${testInfosDone.teacher.name}</td>
+				<td>${testInfosDone.testDetail.totalScore}</td>
+				<td>查看试卷</td>
+			</tr>
+			#{/ list}
+	</tbody>
+</table>
 
-<br/><br/>
-<h4>您已经参加过的考试如下:</h4><br/><br/>
-<ul class="list-group">
-    <li class="list-group-item">免费域名注册</li>
-    <li class="list-group-item">免费 Window 空间托管</li>
-    <li class="list-group-item">图像的数量</li>
-    <li class="list-group-item">24*7 支持</li>
-    <li class="list-group-item">每年更新成本</li>
-</ul>
 

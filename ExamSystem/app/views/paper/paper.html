@@ -1,14 +1,32 @@
-#{if paper != null}
-	<li>${paper.remark}</li>
-	<li>${paper.subject_id}</li>
-#{/if}
+#{extends 'main.html' /}
+#{set title:'Home' /}
 
-#{if papers != null}
-<ul>
-	#{list items:papers, as:'paper'}
-		<li>${paper.remark}</li>
-		<li>${paper.subject_id}</li>
-		<li>---------���Ƿָ���------------</li>
-	#{/list}
-</ul>
-#{/if}
+<table class="table">
+	<h4>您正在参加&nbsp;${paperInfo.paper.remark}&nbsp;如下:</h4>
+	<thead>
+		<tr>
+			<th>试题内容</th>
+			<th>试题类型</th>
+			<th>试题分数</th>
+			<th>填写答案</th>
+			<th>提交单选试题</th>
+		</tr>
+	</thead>
+	<tbody>
+			#{list items:questionAddScores, as:'questionAddScore'}
+			<tr>
+				<form action="/AnswerRecordController/addAnswerRecord" method="get">
+				<td>${questionAddScore.content}</td>
+				<td>${questionAddScore.type}</td>
+				<td>${questionAddScore.question_score}</td>
+				<td><input type="hidden" name=student_id value="${paperInfo.student.id}">
+					<input type="hidden" name="paper_id" value="${paperInfo.paper.id}">
+					<input type="hidden" name="testRecord_id" value="${testRecord.id}">
+					<input type="hidden" name="question_id" value="${questionAddScore.question_id}">
+				<input type="textArea" name="result"></td>
+				<td><input type="submit" name="submit" value="提交单题"></td>
+				</form>
+			</tr>
+			#{/ list}
+	</tbody>
+</table>

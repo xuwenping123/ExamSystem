@@ -1,8 +1,20 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import models.Paper;
+import models.Question;
+import models.Subject;
+import models.TestDetail;
+import models.TestRecord;
+import models.relationship.QuestionPaperRS;
+import models.user.Student;
+import models.user.Teacher;
+import models.vo.PaperInfo;
+import models.vo.QuestionAddScore;
+import models.vo.TestInfo;
+import play.Logger;
 import play.mvc.Controller;
 
 /**
@@ -13,17 +25,38 @@ import play.mvc.Controller;
 public class PaperController extends Controller{
 
 	/**
-	public String remark;
+	 * private Paper paper;
 	
-	@Required
-	public long subject_id;
-	*/
+	private Teacher teacher;
 	
-	public static void testAddPaper() {
-		Paper paper = new Paper("test add paper", 1);
-		paper.save();
-		renderArgs.put("paper", paper);
-		render("paper/paper.html");
+	private Student student;
+	
+	private Subject subject;
+	
+	private TestRecord testRecord;
+	
+	private TestDetail testDetail;
+	 */
+	
+	/**
+	 * 参加考试
+	 * @param testInfo
+	 */
+	public static void joinPaper(long paper_id, long teacher_id, long student_id, long subject_id, long testRecord_id, long testDetail_id) {
+		Paper paper = Paper.findById(paper_id);
+		Student student = Student.findById(student_id);
+		TestRecord testRecord = TestRecord.findById(testRecord_id);
+		List<QuestionPaperRS> questionPaperRSs = QuestionPaperRS.find("paper_id = ?", paper_id).fetch();
+		List<QuestionAddScore> questionAddScores = new ArrayList<>();
+		Question question;
+		QuestionAddScore questionAddScore;
+		for (int i = 0; i < questionPaperRSs.size(); i++) {
+			question = Question.findById(questionPaperRSs.get(i).question_id);
+			questionAddScore = new QuestionAddScore(question.id, question.content, question.answer, question.type, question.subject_id, questionPaperRSs.get(i).question_score);
+			questionAddScores.add(questionAddScore);
+		}
+		PaperInfo paperInfo = new PaperInfo( paper, student);
+		render("paper/paper.html", paperInfo, questionAddScores, testRecord, questionPaperRSs);
 	}
 	
 	/**
