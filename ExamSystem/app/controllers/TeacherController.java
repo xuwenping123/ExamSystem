@@ -18,11 +18,11 @@ public class TeacherController extends Controller{
 	/**
 	 * 添加老师	http.post all
 	 */
-	public static void addTeacher(String name, int age, String username, String password) {
+	public static void addTeacher(String name, Integer age, String username, String password) {
 		Teacher teacher = new Teacher(name, age, username, password);
 		teacher.save();
 		renderArgs.put("teacher", teacher);
-		render("teacher/teacher.html");
+		render("users/teacher.html");
 	}
 	
 	/**

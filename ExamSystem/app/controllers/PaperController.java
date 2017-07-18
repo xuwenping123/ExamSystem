@@ -16,6 +16,7 @@ import models.vo.QuestionAddScore;
 import models.vo.TestInfo;
 import play.Logger;
 import play.mvc.Controller;
+import sun.reflect.generics.tree.VoidDescriptor;
 
 /**
  * 试卷类
@@ -24,20 +25,6 @@ import play.mvc.Controller;
  */
 public class PaperController extends Controller{
 
-	/**
-	 * private Paper paper;
-	
-	private Teacher teacher;
-	
-	private Student student;
-	
-	private Subject subject;
-	
-	private TestRecord testRecord;
-	
-	private TestDetail testDetail;
-	 */
-	
 	/**
 	 * 参加考试
 	 * @param testInfo
@@ -60,15 +47,35 @@ public class PaperController extends Controller{
 	}
 	
 	/**
+	 * 跳转至添加试卷页面
+	 */
+	public static void go2AddPaperPage() {
+		List<Question> questions = Question.findAll();
+		renderArgs.put("questions", questions);
+		List<Subject> subjects = Subject.findAll();
+		renderArgs.put("subjects", subjects);
+		renderArgs.put("pageTitle", "试卷添加");
+		render("paper/paper.html");
+	}
+	
+	/**
+	 * 跳转至修改试卷页面
+	 */
+	public static void go2ModPaperPage(Long id) {
+		Paper paper = Paper.findById(id);
+		renderArgs.put("paper", paper);
+		renderArgs.put("pageTitle", "试卷修改");
+		render("paper/paper.html");
+	}
+	
+	/**
 	 * 添加paper http.post all
 	 */
-	public static void addPaper() {
-		String remark = params.get("remark");
-		long subject_id = Long.valueOf(params.get("subject_id"));
+	public static void addPaper(String remark, Long subject_id, Long selectQuestions[]) {
+		System.out.println(selectQuestions.length);
 		Paper paper = new Paper(remark, subject_id);
 		paper.save();
-		renderArgs.put("paper", paper);
-		render("paper/paper.html");
+		showAllpapers();
 	}
 	
 	/**
@@ -77,23 +84,18 @@ public class PaperController extends Controller{
 	public static void deletePaper(long id) {
 		Paper paper = Paper.findById(id);
 		paper.delete();
-		renderArgs.put("paper", paper);
-		render("paper/paper.html");
+		showAllpapers();
 	}
 	
 	/**
 	 * 修改试卷信息	http.post all
 	 */
-	public static void modifyPaper() {
-		long id = Long.valueOf(params.get("id"));
-		String remark = params.get("remark");
-		long subject_id = Long.valueOf(params.get("subject_id"));
+	public static void modifyPaper(Long id, String remark, Long subject_id) {
 		Paper paper = Paper.findById(id);
 		paper.setRemark(remark);
 		paper.setSubject_id(subject_id);
 		paper.save();
-		renderArgs.put("paper", paper);
-		render("paper/paper.html");
+		showAllpapers();
 	}
 	
 	/**
@@ -109,9 +111,9 @@ public class PaperController extends Controller{
 	/**
 	 * 获取全部	
 	 */
-	public static void findAll() {
+	public static void showAllpapers() {
 		List<Paper> papers = Paper.findAll();
 		renderArgs.put("papers", papers);
-		render("paper/paper.html");
+		render("paper/paperList.html");
 	}
 }

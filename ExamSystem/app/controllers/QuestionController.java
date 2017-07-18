@@ -12,79 +12,60 @@ import play.mvc.Controller;
  */
 public class QuestionController extends Controller{
 	
+	public static void showAllQuestions() {
+		List<Question> questions = Question.findAll();
+		renderArgs.put("questions", questions);
+		render("question/questionList.html");
+	}
+	
 	/**
-	 * 测试添加试题
-	 * 	
+	 * 跳转至添加试题页面
 	 */
-	public static void testAddQuestion() {
-		String content = "2009年9月15日至18日，中国共产党第十七届中央委员会第四次全体会议在北京举行。全会审议通过了《中共中央关于加强和改进新形势下＿＿＿若干重大问题的决定》。A. 经济工作 B. 改革发展 C．党的建设 D. 科学发展";
-		String answer = "A";
-		int type = 0;
-		long subject_id = 1;
-		Question question = new Question(content, answer, type, subject_id);
-		question.save();
-		render("OK.html");
+	public static void go2AddQuestionPage() {
+		List<Subject> subjects = Subject.findAll();
+		renderArgs.put("subjects", subjects);
+		renderArgs.put("pageTitle", "试题添加");
+		render("question/question.html");
+	}
+	
+	public static void go2ModQuestionPage(Long id) {
+		List<Subject> subjects = Subject.findAll();
+		renderArgs.put("subjects", subjects);
+		Question question = Question.findById(id);
+		renderArgs.put("question", question);
+		renderArgs.put("pageTitle", "试题修改");
+		render("question/question.html");
 	}
 	
 	/**
 	 * 添加试题	http.post content answer type subject_id	
 	 */
-	public static void addQuestion() {
-		String content = params.get("content");
-		String answer = params.get("answer");
-		int type = Integer.valueOf(params.get("type"));
-		long subject_id = Long.valueOf(params.get("subject_id"));
+	public static void addQuestion(String content, String answer, Integer type, Long subject_id) {
 		Question question = new Question(content, answer, type, subject_id);
 		question.save();
-		render("OK.html");
+		showAllQuestions();
 	}
 		
 	/**
 	 * 删除试题	单选删除	http.get 传入id
 	 */
-	public static void deteleQuestion() {
-		long id = Long.valueOf(params.get("id"));
+	public static void deteleQuestion(Long id) {
 		Question question = Question.findById(id);
 		question.delete();
-		render("OK.html");
+		showAllQuestions();
 	}
-	
-	/**
-	 * 删除试题	http post	传入 id 数组
-	 */
-	/*
-	public static void batchDeleteQuestion(long ids[]) {
-		if (ids == null || ids.length == 0) {
-			render("errors/404.html");
-		}
-		Question question;
-		for (int i = 0; i < ids.length; i++) {
-			question = Question.findById(ids[i]);
-			question.delete();
-		}
-		render("OK.html");
-	}*/
-	public static void batchDeleteQuestion() {
-		//TODO
-	}
-	
 	
 	/**
 	 * 修改试题信息	选择单个试题 	传入试题id content	answer type subject_id http.Post
 	 */
-	public static void modifyQuestion() {
-		long id = Long.valueOf(params.get("id"));
-		String content = params.get("content");
-		String answer = params.get("answer");
-		int type = Integer.valueOf(params.get("type"));
-		long subject_id = Long.valueOf(params.get("subject_id"));
+	public static void modifyQuestion(Long id, String content, String answer, Integer type, Long subject_id) {
 		Question question = Question.findById(id);
 		question.setContent(content);
 		question.setAnswer(answer);
 		question.setType(type);
 		question.setSubject_id(subject_id);
 		question.save();
-		render("OK.html");
+		showAllQuestions();
 	}
 	
 	/**

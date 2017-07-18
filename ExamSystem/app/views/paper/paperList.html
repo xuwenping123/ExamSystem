@@ -1,0 +1,26 @@
+#{extends 'users/teacherButton.html' /}
+#{set teacherButtontitle:'试卷管理主页' /}
+
+<table class="table table-hover">
+	<a href="/PaperController/go2AddPaperPage" class="btn btn-success">添加</a>
+	<thead>
+		<tr>
+			<th>试卷标题</th>
+			<th>试卷科目</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:papers, as:'paper'}
+			<tr>
+				<td>${paper.remark}</td>
+				
+				<td>${paper.subject_id}</td>
+				<td>
+					<a class="btn btn-default" href="/PaperController/go2ModPaperPage?id=${paper.id}" role="button">修改</a>
+					<a class="btn btn-default" href="/PaperController/deletePaper?id=${paper.id}" role="button">删除</a>
+				</td>
+			</tr>
+		#{/list}
+	</tbody>
+</table>

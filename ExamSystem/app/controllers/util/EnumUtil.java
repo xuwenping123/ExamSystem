@@ -8,13 +8,13 @@ public class EnumUtil {
 	 *
 	 */
 	public enum questionType {
-		/** 单选题 */
+		/** 单选题 0*/
 		singleQuestion,
-		/** 多选题 */
+		/** 多选题 1*/
 		multiQuestion,
-		/** 填空题 */
+		/** 填空题 2*/
 		blankFillQuestion,
-		/** 问答题 */
+		/** 问答题 3*/
 		wenDaQuestion,
 	}
 	

@@ -24,15 +24,11 @@ public class StudentController extends Controller {
 	/**
 	 * 添加student用户 http.post 所有信息
 	 */
-	public static void addStudent() {
-		String name = params.get("name");
-		int age = Integer.valueOf(params.get("age"));
-		String username = params.get("username");
-		String password = params.get("password");
+	public static void addStudent(String name, Integer age, String username, String password) {
 		Student student = new Student(name, age, username, password);
 		student.save();
 		renderArgs.put("student", student);
-		render("student/student.html");
+		render("users/student.html");
 	}
 
 	/**

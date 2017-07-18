@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import play.data.validation.Required;
 import play.db.jpa.Model;
@@ -14,6 +15,7 @@ import play.db.jpa.Model;
 @Table(name="t_paper")
 public class Paper extends Model{
 
+	@Required
 	public String remark;
 	
 	@Required

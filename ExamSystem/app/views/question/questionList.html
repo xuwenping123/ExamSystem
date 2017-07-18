@@ -1,0 +1,36 @@
+#{extends 'users/teacherButton.html' /}
+#{set teacherButtontitle:'题库管理主页' /}
+
+<table class="table table-hover">
+	<a href="/QuestionController/go2AddQuestionPage" class="btn btn-success">添加</a>
+	<thead>
+		<tr>
+			<th>试题内容</th>
+			<th>试题答案</th>
+			<th>试题类型</th>
+			<th>试题科目</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:questions, as:'question'}
+			<tr>
+				<td>${question.content}</td>
+				<td>${question.answer}</td>
+				<td>
+					#{if question.type == 0} 单选题  #{/if}
+					#{if question.type == 1} 多选题 #{/if}
+					#{if question.type == 2} 填空题  #{/if}
+					#{if question.type == 3} 问答题  #{/if}
+				</td>
+				<td>${question.subject_id}</td>
+				<td>
+					<td>
+					<a class="btn btn-default" href="/QuestionController/go2ModQuestionPage?id=${question.id}" role="button">修改</a>
+					<a class="btn btn-default" href="/QuestionController/deteleQuestion?id=${question.id}" role="button">删除</a>
+				</td>
+				</td>
+			</tr>
+		#{/list}
+	</tbody>
+</table>

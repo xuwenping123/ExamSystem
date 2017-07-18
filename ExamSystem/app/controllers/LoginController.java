@@ -24,8 +24,13 @@ public class LoginController extends Controller {
 	 * @param loginType
 	 * @param username
 	 * @param password
+	 * @param submit 关键字，用于判断是登录还是注册
 	 */
-	public static void login(int loginType, String username, String password) {
+	public static void login(int loginType, String username, String password, String submit) {
+		if (submit.equals("0")) {
+			//注册，跳转至注册页面
+			render("Application/loginAdd.html");
+		}
 		if (loginType == controllers.util.EnumUtil.loginType.teacher.ordinal()) {
 			List<Teacher> teachers = Teacher.find("username = ? and password = ?", username, password).fetch();
 			if (teachers != null && teachers.size() != 0) {
@@ -34,7 +39,7 @@ public class LoginController extends Controller {
 				session.put("teacher", teacher);
 				render("users/teacher.html", teacher);
 			}
-			renderArgs.put("message", "登录失败，请重新登录");
+			renderArgs.put("message", "登录失败，用户名或密码错误！请重新登录");
 			render("Application/index.html");
 		} else if (loginType == controllers.util.EnumUtil.loginType.student.ordinal()) {
 			List<Student> students = Student.find("username = ? and password = ?", username, password).fetch();
@@ -46,8 +51,8 @@ public class LoginController extends Controller {
 				List<TestInfo> testInfosDones = getTestInfodone(student.id);
 				render("users/student.html", student, testInfos, testInfosDones);
 			}
-			renderArgs.put("message", "登录失败，请重新登录");
-			render("Application/index.html");
+			renderArgs.put("message", "登录失败，用户名或密码错误！请重新登录");
+			renderTemplate("Application/index.html");
 		}
 	}
 	
@@ -99,5 +104,22 @@ public class LoginController extends Controller {
 			} 
 		}
 		return testInfos;
+	}
+	
+	/**
+	 * 注册信息，学生老师同一入口
+	 * @param name
+	 * @param age
+	 * @param username
+	 * @param password
+	 * @param loginType
+	 */
+	public static void loginAdd(String name, Integer age, String username, String password, Integer loginType) {
+		if (loginType == 0) {
+			TeacherController.addTeacher(name, age, username, password);
+		}
+		if (loginType == 1) {
+			StudentController.addStudent(name, age, username, password);
+		}
 	}
 }

@@ -3,6 +3,8 @@ package models;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
@@ -17,6 +19,9 @@ public class Subject extends Model{
 	
 	@Required
 	public int status;
+	
+	@Transient
+	public String statusDesc;
 	
 	public Subject() {
 	}
@@ -43,4 +48,13 @@ public class Subject extends Model{
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+	public String getStatusDesc() {
+		if(statusDesc == null){
+			
+		}
+		return statusDesc;
+	}
+	
+	
 }

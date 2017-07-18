@@ -53,4 +53,6 @@ public class QuestionPaperRS extends Model{
 	public int getQuestion_score() {
 		return question_score;
 	}
+	
+	
 }
