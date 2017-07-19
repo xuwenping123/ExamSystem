@@ -20,9 +20,6 @@ public class Subject extends Model{
 	@Required
 	public int status;
 	
-	@Transient
-	public String statusDesc;
-	
 	public Subject() {
 	}
 	
@@ -48,13 +45,4 @@ public class Subject extends Model{
 	public void setStatus(int status) {
 		this.status = status;
 	}
-
-	public String getStatusDesc() {
-		if(statusDesc == null){
-			
-		}
-		return statusDesc;
-	}
-	
-	
 }

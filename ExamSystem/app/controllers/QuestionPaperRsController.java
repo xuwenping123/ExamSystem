@@ -15,10 +15,7 @@ public class QuestionPaperRsController extends Controller{
 	 * @param paper_id
 	 * @param question_id
 	 */
-	public static void bindQuestionPaper() {
-		long paper_id = Long.valueOf(params.get("paper_id"));
-		long question_id = Long.valueOf(params.get("question_id"));
-		int question_score = Integer.valueOf(params.get("question_score"));
+	public static void bindQuestionPaper(Long paper_id, Long question_id, Integer question_score) {
 		QuestionPaperRS questionPaperRS = new QuestionPaperRS(paper_id, question_id, question_score);
 		questionPaperRS.save();
 	}

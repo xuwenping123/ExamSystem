@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import play.data.validation.Required;
 import play.db.jpa.Model;
@@ -26,9 +27,17 @@ public class Question extends Model{
 	@Required
 	public long subject_id;
 	
-	public Question() {
-	}
+	@Transient
+	public int question_score;
 	
+	public int getQuestion_score() {
+		return question_score;
+	}
+
+	public void setQuestion_score(int question_score) {
+		this.question_score = question_score;
+	}
+
 	public Question(String content, String answer, int type, long subject_id) {
 		this.content = content;
 		this.answer = answer;
@@ -51,5 +60,4 @@ public class Question extends Model{
 	public void setSubject_id(long subject_id) {
 		this.subject_id = subject_id;
 	}
-	
 }

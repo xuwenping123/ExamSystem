@@ -21,9 +21,17 @@ public class Paper extends Model{
 	@Required
 	public long subject_id;
 	
-	public Paper() {
-	}
+	@Transient
+	public int totalScore;
 	
+	public int getTotalScore() {
+		return totalScore;
+	}
+
+	public void setTotalScore(int totalScore) {
+		this.totalScore = totalScore;
+	}
+
 	public Paper(String remark, long subject_id) {
 		this.remark = remark;
 		this.subject_id = subject_id;

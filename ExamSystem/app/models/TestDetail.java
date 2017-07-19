@@ -33,17 +33,37 @@ public class TestDetail extends Model{
 		this.teacher_id = teacher_id;
 		this.student_id = student_id;
 	}
-	
+
+	public long getTestRecord_id() {
+		return testRecord_id;
+	}
+
 	public void setTestRecord_id(long testRecord_id) {
 		this.testRecord_id = testRecord_id;
+	}
+
+	public long getTeacher_id() {
+		return teacher_id;
 	}
 
 	public void setTeacher_id(long teacher_id) {
 		this.teacher_id = teacher_id;
 	}
 
+	public long getStudent_id() {
+		return student_id;
+	}
+
 	public void setStudent_id(long student_id) {
 		this.student_id = student_id;
 	}
 
+	public int getTotalScore() {
+		return totalScore;
+	}
+
+	public void setTotalScore(int totalScore) {
+		this.totalScore = totalScore;
+	}
+	
 }

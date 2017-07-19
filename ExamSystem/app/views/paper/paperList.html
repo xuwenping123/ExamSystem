@@ -7,6 +7,7 @@
 		<tr>
 			<th>试卷标题</th>
 			<th>试卷科目</th>
+			<th>试卷总分</th>
 			<th>操作</th>
 		</tr>
 	</thead>
@@ -14,8 +15,8 @@
 		#{list items:papers, as:'paper'}
 			<tr>
 				<td>${paper.remark}</td>
-				
 				<td>${paper.subject_id}</td>
+				<td>${paper.totalScore}</td>				
 				<td>
 					<a class="btn btn-default" href="/PaperController/go2ModPaperPage?id=${paper.id}" role="button">修改</a>
 					<a class="btn btn-default" href="/PaperController/deletePaper?id=${paper.id}" role="button">删除</a>

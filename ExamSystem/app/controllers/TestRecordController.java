@@ -15,33 +15,13 @@ import sun.launcher.resources.launcher;
  *
  */
 public class TestRecordController extends Controller{
-	/**
-	 * 
-	@Required
-	public Date beginTime;
-	
-	@Required
-	public Date endTime;
-	
-	@Required
-	public int status;
-	
-	public String remark;
-	
-	public long paper_id;
-	 */
-	
-	public static void testAddTestRecord() {
-		Date beginTime = new Date();
-		Date endTime = new Date();
-		int status = 3;
-		String remark = "test add testRecord";
-		long paper_id = 1;
-		TestRecord testRecord = new TestRecord(beginTime, endTime, status,remark, paper_id);
-		testRecord.save();
-		renderArgs.put("testRecord", testRecord);
-		render("testRecord/testRecord.html");
+
+	public static void showAllTestRecord() {
+		List<TestRecord> testRecords = TestRecord.findAll();
+		renderArgs.put("testRecords", testRecords);
+		render("test/testList.html");
 	}
+	
 	
 	/**
 	 * 校验开始时间与结束时间

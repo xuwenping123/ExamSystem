@@ -37,6 +37,10 @@ public class TestRecord extends Model{
 		this.paper_id = paper_id;
 	}
 	
+	public long getPaper_id() {
+		return paper_id;
+	}
+
 	public void setBeginTime(Date beginTime) {
 		this.beginTime = beginTime;
 	}
