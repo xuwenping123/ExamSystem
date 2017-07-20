@@ -2,11 +2,15 @@ package controllers;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import models.Paper;
 import models.TestRecord;
+import models.vo.TestRecordVO;
 import play.mvc.Controller;
+import service.TestRecordService;
 import sun.launcher.resources.launcher;
 
 /**
@@ -16,12 +20,39 @@ import sun.launcher.resources.launcher;
  */
 public class TestRecordController extends Controller{
 
+	/**
+	 * 查看所有考试记录安排
+	 */
 	public static void showAllTestRecord() {
+		List<TestRecordVO> testRecordVOs = new ArrayList<>();
+		TestRecordVO testRecordVO = null;
 		List<TestRecord> testRecords = TestRecord.findAll();
-		renderArgs.put("testRecords", testRecords);
+		TestRecordService testRecordService = TestRecordService.getInstance();
+		for (int i = 0; i < testRecords.size(); i++) {
+			testRecordVO = testRecordService.getTestRecordVObyTestRecord(testRecords.get(i));
+			testRecordVOs.add(testRecordVO);
+		}
+		renderArgs.put("testRecordVOs", testRecordVOs);
 		render("test/testList.html");
 	}
 	
+	/**
+	 * 跳转至添加考试记录页面
+	 */
+	public static void go2AddTestRecord() {
+		List<Paper> papers = Paper.findAll();
+		renderArgs.put("papers", papers);
+		renderArgs.put("pageTitle", "考试添加");
+		render("test/test.html");
+	}
+	
+	/**
+	 * 跳转至修改考试记录页面
+	 */
+	public static void go2ModTestRecord() {
+		renderArgs.put("pageTitle", "考试修改");
+		render("test/test.html");
+	}
 	
 	/**
 	 * 校验开始时间与结束时间
@@ -38,23 +69,20 @@ public class TestRecordController extends Controller{
 	/**
 	 * 添加考试 http.post all
 	 */
-	public static void addTestRecord() {
-		Date beginTime = null;
-		Date endTime = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	public static void addTestRecord(String beginTime, String endTime, Integer status, String remark, long paper_id) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
+		Date begin = null;
+		Date end = null;
 		try {
-			beginTime = sdf.parse(params.get("beginTime"));
-			endTime = sdf.parse(params.get("endTime"));
+			begin = sdf.parse(beginTime);
+			end = sdf.parse(endTime);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		int status = Integer.valueOf(params.get("status"));
-		String remark = params.get("remark");
-		long paper_id = Long.valueOf(params.get("paper_id"));
-		TestRecord testRecord = new TestRecord(beginTime, endTime, status, remark, paper_id);
+		TestRecord testRecord = new TestRecord(begin, end, status, remark, paper_id);
 		testRecord.save();
 		renderArgs.put("testRecord", testRecord);
-		render("testRecord/testRecord.html");
+		showAllTestRecord();
 	}
 	
 	/**
@@ -63,8 +91,7 @@ public class TestRecordController extends Controller{
 	public static void deleteTestRecord(long id) {
 		TestRecord testRecord = TestRecord.findById(id);
 		testRecord.delete();
-		renderArgs.put("testRecord", testRecord);
-		render("testRecord/testRecord.html");
+		showAllTestRecord();
 	}
 	
 	/**
@@ -92,7 +119,7 @@ public class TestRecordController extends Controller{
 		testRecord.setPaper_id(paper_id);
 		testRecord.save();
 		renderArgs.put("testRecord", testRecord);
-		render("testRecord/testRecord.html");
+		showAllTestRecord();
 	}
 	
 	/**

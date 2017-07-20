@@ -11,6 +11,12 @@ import models.vo.TestRecordVO;
 
 public class TestRecordService {
 	
+	private final static TestRecordService instance = new TestRecordService();
+	
+	public static TestRecordService getInstance() {
+		return instance;
+	}
+	
 	/**
 	 * 
 	private TestRecord testRecord;
@@ -21,15 +27,14 @@ public class TestRecordService {
 	 */
 	
 	/**
-	 * 
+	 * 通过一条考试记录，获取该条记录封装的 TestRecordVO
 	 * @param testRecord
 	 * @return
 	 */
 	public TestRecordVO getTestRecordVObyTestRecord(TestRecord testRecord) {
 		Paper paper = Paper.findById(testRecord.getPaper_id());
-		List<TestDetail> testDetails = TestDetail.find("testRecord_id = ?", testRecord.getId()).fetch();
-		TestDetail testDetail = testDetails.get(0);
-		Teacher teacher = Teacher.findById(testDetail.getTeacher_id());
-		return null;
+		TestRecordVO testRecordVO = new TestRecordVO(testRecord.getId(), testRecord.getBeginTime(), testRecord.getEndTime(),
+				testRecord.getStatus(), testRecord.getRemark(), paper);
+		return testRecordVO;
 	}
 }

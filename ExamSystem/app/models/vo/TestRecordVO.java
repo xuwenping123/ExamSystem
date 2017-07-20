@@ -11,31 +11,56 @@ import models.user.Teacher;
 import play.data.validation.Required;
 
 public class TestRecordVO {
+	private long testRecord_id;
 	
-	private TestRecord testRecord;
-
-	private TestDetail testDetail;
+	private Date beginTime;
+	
+	private Date endTime;
+	
+	private int status;
+	
+	private String remark;
 	
 	private Paper paper;
-	
-	private Teacher teacher;
-	
-	private List<Student> students;
 
-	public TestDetail getTestDetail() {
-		return testDetail;
+	public long getTestRecord_id() {
+		return testRecord_id;
 	}
 
-	public void setTestDetail(TestDetail testDetail) {
-		this.testDetail = testDetail;
+	public void setTestRecord_id(long testRecord_id) {
+		this.testRecord_id = testRecord_id;
 	}
 
-	public TestRecord getTestRecord() {
-		return testRecord;
+	public Date getBeginTime() {
+		return beginTime;
 	}
 
-	public void setTestRecord(TestRecord testRecord) {
-		this.testRecord = testRecord;
+	public void setBeginTime(Date beginTime) {
+		this.beginTime = beginTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
 	public Paper getPaper() {
@@ -46,29 +71,12 @@ public class TestRecordVO {
 		this.paper = paper;
 	}
 
-	public Teacher getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
-	}
-
-	public List<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
-
-	public TestRecordVO(TestRecord testRecord, TestDetail testDetail, Paper paper, Teacher teacher,
-			List<Student> students) {
-		this.testRecord = testRecord;
-		this.testDetail = testDetail;
+	public TestRecordVO(long testRecord_id, Date beginTime, Date endTime, int status, String remark, Paper paper) {
+		this.testRecord_id = testRecord_id;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+		this.status = status;
+		this.remark = remark;
 		this.paper = paper;
-		this.teacher = teacher;
-		this.students = students;
 	}
-
 }

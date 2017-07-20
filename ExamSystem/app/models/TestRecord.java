@@ -60,5 +60,21 @@ public class TestRecord extends Model{
 	public void setPaper_id(long paper_id) {
 		this.paper_id = paper_id;
 	}
+
+	public Date getBeginTime() {
+		return beginTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
 	
 }

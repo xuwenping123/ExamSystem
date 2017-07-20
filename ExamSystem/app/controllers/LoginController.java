@@ -122,4 +122,14 @@ public class LoginController extends Controller {
 			StudentController.addStudent(name, age, username, password);
 		}
 	}
+	
+	/**
+	 * 退出按钮
+	 */
+	public static void logOut() {
+		session.clear();
+		flash.clear();
+		renderArgs.put("message", "您已经成功退出！");
+		render("Application/index.html");
+	}
 }
