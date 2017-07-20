@@ -10,6 +10,12 @@ import models.user.Student;
 import models.user.Teacher;
 import play.data.validation.Required;
 
+/**
+ * 用于老师考试系统中前后端交互对象
+ * @author think
+ *
+ */
+
 public class TestRecordVO {
 	private long testRecord_id;
 	
@@ -22,6 +28,26 @@ public class TestRecordVO {
 	private String remark;
 	
 	private Paper paper;
+	
+	private Teacher teacher;
+	
+	private List<Student> students;
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
 
 	public long getTestRecord_id() {
 		return testRecord_id;
@@ -78,5 +104,17 @@ public class TestRecordVO {
 		this.status = status;
 		this.remark = remark;
 		this.paper = paper;
+	}
+
+	public TestRecordVO(long testRecord_id, Date beginTime, Date endTime, int status, String remark, Paper paper,
+			Teacher teacher, List<Student> students) {
+		this.testRecord_id = testRecord_id;
+		this.beginTime = beginTime;
+		this.endTime = endTime;
+		this.status = status;
+		this.remark = remark;
+		this.paper = paper;
+		this.teacher = teacher;
+		this.students = students;
 	}
 }

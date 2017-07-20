@@ -85,6 +85,5 @@ public class SubjectController extends Controller{
 		int status = Integer.valueOf(temp);
 		subject.setStatus(status);
 		subject.save();
-		render("OK.html");
 	}
 }

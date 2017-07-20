@@ -70,4 +70,28 @@ public class AnswerRecord extends Model{
 		this.score = score;
 	}
 
+	public long getStudent_id() {
+		return student_id;
+	}
+
+	public long getPaper_id() {
+		return paper_id;
+	}
+
+	public long getTestRecord_id() {
+		return testRecord_id;
+	}
+
+	public long getQuestion_id() {
+		return question_id;
+	}
+
+	public String getResult() {
+		return result;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
 }

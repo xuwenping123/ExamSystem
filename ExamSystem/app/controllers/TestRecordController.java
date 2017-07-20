@@ -6,8 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import controllers.util.ConstantUtil;
+import groovyjarjarasm.asm.tree.IntInsnNode;
 import models.Paper;
+import models.TestDetail;
 import models.TestRecord;
+import models.user.Student;
+import models.user.Teacher;
 import models.vo.TestRecordVO;
 import play.mvc.Controller;
 import service.TestRecordService;
@@ -42,6 +47,10 @@ public class TestRecordController extends Controller{
 	public static void go2AddTestRecord() {
 		List<Paper> papers = Paper.findAll();
 		renderArgs.put("papers", papers);
+		List<Student> students = Student.findAll();
+		renderArgs.put("students", students);
+		List<Teacher> teachers = Teacher.findAll();
+		renderArgs.put("teachers", teachers);
 		renderArgs.put("pageTitle", "考试添加");
 		render("test/test.html");
 	}
@@ -49,9 +58,28 @@ public class TestRecordController extends Controller{
 	/**
 	 * 跳转至修改考试记录页面
 	 */
-	public static void go2ModTestRecord() {
+	public static void go2ModTestRecord(Long id) {
+		TestRecord testRecord = TestRecord.findById(id);
+		renderArgs.put("testRecord", testRecord);
+		List<Paper> papers = Paper.findAll();
+		renderArgs.put("papers", papers);
 		renderArgs.put("pageTitle", "考试修改");
+		List<Student> students = Student.findAll();
+		renderArgs.put("students", students);
+		List<Teacher> teachers = Teacher.findAll();
+		renderArgs.put("teachers", teachers);
 		render("test/test.html");
+	}
+	
+	/**
+	 * 跳转至查看考试记录（特别是阅卷人和考试学生信息）的页面
+	 * @param id
+	 */
+	public static void go2ViewTestRecord(Long id) {
+		TestRecordVO testRecordVO = TestRecordService.getInstance().getTestRecordVOByTestRecordId(id);
+		renderArgs.put("testRecordVO", testRecordVO);
+		renderArgs.put("pageTitle", "考试查看");
+		render("test/testView.html");
 	}
 	
 	/**
@@ -67,21 +95,12 @@ public class TestRecordController extends Controller{
 	}
 	
 	/**
-	 * 添加考试 http.post all
+	 * 添加考试 http.post all 
 	 */
-	public static void addTestRecord(String beginTime, String endTime, Integer status, String remark, long paper_id) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy:MM:dd HH:mm:ss");
-		Date begin = null;
-		Date end = null;
-		try {
-			begin = sdf.parse(beginTime);
-			end = sdf.parse(endTime);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		TestRecord testRecord = new TestRecord(begin, end, status, remark, paper_id);
-		testRecord.save();
-		renderArgs.put("testRecord", testRecord);
+	public static void addTestRecord(String beginTime, String endTime, Integer status, String remark,
+			long paper_id, Long teacher_id, Long studentIds[]) {
+		TestRecordService.getInstance().addTestRecord(beginTime, endTime, status, remark,
+				paper_id, teacher_id, studentIds);
 		showAllTestRecord();
 	}
 	
@@ -97,28 +116,10 @@ public class TestRecordController extends Controller{
 	/**
 	 * 修改考试信息	http.post all
 	 */
-	public static void modifyTestRecord() {
-		long id = Long.valueOf(params.get("id"));
-		Date beginTime = null;
-		Date endTime = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		try {
-			beginTime = sdf.parse(params.get("beginTime"));
-			endTime = sdf.parse(params.get("endTime"));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		int status = Integer.valueOf(params.get("status"));
-		String remark = params.get("remark");
-		long paper_id = Long.valueOf(params.get("paper_id"));
-		TestRecord testRecord = TestRecord.findById(id);
-		testRecord.setBeginTime(beginTime);
-		testRecord.setEndTime(endTime);
-		testRecord.setStatus(status);
-		testRecord.setRemark(remark);
-		testRecord.setPaper_id(paper_id);
-		testRecord.save();
-		renderArgs.put("testRecord", testRecord);
+	public static void modifyTestRecord(Long id, String remark, String beginTime, String endTime, 
+			Integer status, Long paper_id, Long teacher_id, Long studentIds[]) {
+		TestRecordService.getInstance().modifyTestRecord(id, remark, beginTime, endTime, status, 
+				paper_id, teacher_id, studentIds);
 		showAllTestRecord();
 	}
 	

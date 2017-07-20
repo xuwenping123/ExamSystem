@@ -29,6 +29,7 @@
 				<td>${testRecordVO.beginTime}</td>
 				<td>${testRecordVO.endTime}</td>
 				<td>
+					<a class="btn btn-default" href="/TestRecordController/go2ViewTestRecord?id=${testRecordVO.testRecord_id}" role="button">查看</a>
 					<a class="btn btn-default" href="/TestRecordController/go2ModTestRecord?id=${testRecordVO.testRecord_id}" role="button">修改</a>
 					<a class="btn btn-default" href="/TestRecordController/deleteTestRecord?id=${testRecordVO.testRecord_id}" role="button">删除</a>
 				</td>

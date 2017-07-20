@@ -53,4 +53,16 @@ public class EnumUtil {
 		/** 学生 */
 		student
 	}
+	
+	/**
+	 * testDetail 是否参加了该场考试
+	 * @author think
+	 *
+	 */
+	public enum istaked {
+		/** 没有参加 0  */
+		notaked,
+		/** 已结参加 1 */
+		taked,
+	}
 }

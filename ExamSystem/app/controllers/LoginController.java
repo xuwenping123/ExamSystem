@@ -47,6 +47,7 @@ public class LoginController extends Controller {
 				Student student = students.get(0);
 				session.put("loginType", "1");
 				session.put("student", student);
+				session.put("student_id", student.getId());
 				List<TestInfo> testInfos = getTestInfo2do(student.id);
 				List<TestInfo> testInfosDones = getTestInfodone(student.id);
 				render("users/student.html", student, testInfos, testInfosDones);

@@ -25,6 +25,9 @@ public class TestDetail extends Model{
 	/** student_id 在testRecord_id 中所得总分 */
 	public int totalScore;
 
+	@Required
+	public int istaked;
+	
 	public TestDetail() {
 	}
 
@@ -32,6 +35,14 @@ public class TestDetail extends Model{
 		this.testRecord_id = testRecord_id;
 		this.teacher_id = teacher_id;
 		this.student_id = student_id;
+	}
+
+	public int getIstaked() {
+		return istaked;
+	}
+
+	public void setIstaked(int istaked) {
+		this.istaked = istaked;
 	}
 
 	public long getTestRecord_id() {

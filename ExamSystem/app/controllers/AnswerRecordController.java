@@ -5,7 +5,7 @@ import play.data.validation.Required;
 import play.mvc.Controller;
 
 /**
- * 答题记录表
+ * 答题记录表 -> AnswerRecordService
  * @author think
  *
  */

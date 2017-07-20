@@ -1,0 +1,88 @@
+#{extends 'users/teacherButton.html' /}
+#{set teacherButtontitle:'科目管理主页' /}
+
+<header class="page-header text-center">
+    <h1>${pageTitle}</h1>
+</header>
+
+
+<div class="container">    
+	    <div class="form-horizontal">
+	    	<div class="form-group">
+	            <label class="col-sm-2 control-label">Id</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="id" value="${testRecordVO.testRecord_id}" readonly> 
+	            </div>
+	        </div>
+	    
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试标题</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="remark" value="${testRecordVO.remark}" readonly>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试开始时间</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="beginTime"  value="${testRecordVO.beginTime}" readonly>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试结束时间</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="endTime" value="${testRecordVO.endTime}" readonly>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试状态</label>
+	            <div class="col-sm-10">
+	                <select class="form-control" name="status">
+	                	#{if testRecordVO.status == 0}
+							<option value="0" checked="checked">启用</option>
+							<option value="1">禁用 </option>
+						#{/ if}
+						#{if testRecordVO.status == 1}
+							<option value="0" >启用</option>
+							<option value="1" checked="checked">禁用 </option>
+						#{/ if}
+					</select>
+	            </div>
+	        </div>
+	        
+	        
+	        
+	        <table class="table table-hover">
+				<a href="#" class="btn btn-success">试卷 阅卷人 考生信息</a>
+				<thead>
+					<tr>
+						<th>试卷</th>
+						<th>阅卷人</th>
+						<th>考生</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>${testRecordVO.paper.remark}</td>
+						<td>${testRecordVO.teacher.name}</td>
+						<td>
+						#{list items:testRecordVO.students, as:'student'}
+						${student.name}&nbsp;&nbsp;
+						#{/list}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+	        
+	        <div class="form-group">
+	            <div class="col-sm-2">
+	
+	            </div>
+	            <div class="col-sm-10">
+		            <a href="/TestRecordController/showAllTestRecord"><button class="btn btn-primary">确定</button></a>
+	            </div>
+	        </div>
+	    </div>
+	</div>

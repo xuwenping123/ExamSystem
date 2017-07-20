@@ -1,5 +1,7 @@
 package controllers;
 
+import com.sun.org.apache.xml.internal.security.Init;
+
 import models.user.Student;
 import play.Logger;
 import play.mvc.Controller;
@@ -44,12 +46,7 @@ public class StudentController extends Controller {
 	/**
 	 * 修改student http.post all
 	 */
-	public static void modifyStudent() {
-		long id = Long.valueOf(params.get("id"));
-		String name = params.get("name");
-		int age = Integer.valueOf(params.get("age"));
-		String username = params.get("username");
-		String password = params.get("password");
+	public static void modifyStudent(Long id, String name, int age, String username, String password) {
 		Student student = Student.findById(id);
 		student.setName(name);
 		student.setAge(age);
