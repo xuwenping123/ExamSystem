@@ -37,6 +37,7 @@ public class LoginController extends Controller {
 				Teacher teacher = teachers.get(0);
 				session.put("loginType", "0");
 				session.put("teacher", teacher);
+				session.put("teacher_id", teacher.getId());
 				render("users/teacher.html", teacher);
 			}
 			renderArgs.put("message", "登录失败，用户名或密码错误！请重新登录");

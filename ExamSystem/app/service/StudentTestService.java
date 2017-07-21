@@ -77,17 +77,18 @@ public class StudentTestService {
 	}
 	
 	/**
-	 * 通过学生id获取学生当前时间已经过期的考试	  
-	 * 1. nowDate before endTime
+	 * 通过学生id获取学生当前时间过期并且已经参加过的考试	  
+//	 * 1. nowDate before endTime
 	 * 2. istaked == 1
 	 * @param id
 	 * @return
 	 */
 	public List<StudentViewTestListVO> getDoneTest(long id) {
 		List<StudentViewTestListVO> studentViewTestListVOs = getStudentViewTestListVOs(id);
-		Date nowDate = new Date();
+//		暂时不需要进行时间日期的判断
+//		Date nowDate = new Date();
 		for (int i = 0; i < studentViewTestListVOs.size(); i++) {
-			if (nowDate.before(studentViewTestListVOs.get(i).getEndTime()) || studentViewTestListVOs.get(i).getIstaked() == 0) {
+			if (studentViewTestListVOs.get(i).getIstaked() == 0) {
 				studentViewTestListVOs.remove(i);
 			}
 		}
@@ -151,5 +152,19 @@ public class StudentTestService {
 			answerViewResultVos.add(answerViewResultVo);
 		}
 		return answerViewResultVos;
+	}
+	
+	/**
+	 * 判断该条考试记录是否被老师批阅
+	 * 若已批阅，返回 true
+	 * 否则，返回false
+	 * @param testRecord_id
+	 * @param student_id
+	 * @return
+	 */
+	public boolean isMarkedByTestRecordIdStudentId(long testRecord_id, long student_id) {
+		TestDetailService testDetailService = TestDetailService.getInstance();
+		TestDetail testDetail = testDetailService.getTestDetailByTwoId(testRecord_id, student_id);
+		return testDetailService.isMarkedBy(testDetail.getId());
 	}
 }

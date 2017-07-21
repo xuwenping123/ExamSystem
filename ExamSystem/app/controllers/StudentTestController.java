@@ -57,7 +57,12 @@ public class StudentTestController extends Controller {
 	 */
 	public static void showTestResult(Long id) {
 		Long student_id = Long.valueOf(session.get("student_id"));
-		List<AnswerViewResultVo> answerViewResultVos = StudentTestService.getInstance().showTestResult(id, student_id);
+		StudentTestService studentTestService = StudentTestService.getInstance();
+		List<AnswerViewResultVo> answerViewResultVos = studentTestService.showTestResult(id, student_id);
+		boolean flag = studentTestService.isMarkedByTestRecordIdStudentId(id, student_id);
+		if (flag == true) {
+			renderArgs.put("message", "您的试卷已被老师批阅！");
+		}
 		renderArgs.put("answerViewResultVos", answerViewResultVos);
 		render("student/doneTest.html");
 	}

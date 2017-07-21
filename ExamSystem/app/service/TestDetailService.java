@@ -52,4 +52,36 @@ public class TestDetailService {
 		testDetail.setIstaked(1);
 		testDetail.save();
 	}
+	
+	/**
+	 * 查看老师的未进行批改的试卷
+	 * @param teacher_id
+	 * @return
+	 */
+	public List<TestDetail> getNoMarkedTestById(Long teacher_id) {
+		List<TestDetail> testDetails = TestDetail.find("isMarked = ? and teacher_id = ?", 0, teacher_id).fetch();
+		return testDetails;
+	}
+	
+	/** 
+	 * 老师阅卷后，修改状态值为1， 且不可调整
+	 * @param testDetail_id
+	 */
+	public void setMarked(Long testDetail_id) {
+		TestDetail testDetail = TestDetail.findById(testDetail_id);
+		testDetail.setIsMarked(1);
+		testDetail.save();
+	}
+	
+	/** 
+	 * 判断该条考试记录是否已被老师阅卷
+	 * 若被，返回true
+	 * 否则，返回false
+	 * @param testDetail_id
+	 * @return
+	 */
+	public boolean isMarkedBy(Long testDetail_id) {
+		TestDetail testDetail = TestDetail.findById(testDetail_id);
+		return testDetail.getIsMarked() == 1;
+	}
 }

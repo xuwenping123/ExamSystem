@@ -12,23 +12,6 @@ import play.mvc.Controller;
 public class AnswerRecordController extends Controller{
 
 	/**
-	 * @Required
-	public long student_id;
-	
-	@Required
-	public long paper_id;
-	
-	@Required
-	public long testRecord_id;
-	
-	@Required
-	public long question_id;
-	
-	public String result;
-	
-	public int score;
-	 */
-	/**
 	 * 添加答题记录一条
 	 * @param student_id
 	 * @param paper_id

@@ -1,16 +1,10 @@
-<!-- 考生考过的试卷 -->
-#{extends 'users/studentButton.html' /}
+#{extends 'users/teacherButton.html' /}
 #{set title:'Home' /}
-#{set studentButtontitle:'考试系统考生个人主页' /}
+#{set teacherButtontitle:'考试系统老师个人主页' /}
 
-#{if message != null}
-<div class="alert alert-warning">
-	<a href="#" class="close" data-dismiss="alert">&times;</a>
-	<h5><strong>警告！</strong>${message}</h5>
-</div>
-#{/if}
+<!-- 阅卷page页面 -->
 
-<form action="/StudentTestController/goDoneTestPage?student_id=${session.student_id}" method="post">
+<form action="/MarkingController/submitMarkingResult" method="post">
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -35,7 +29,7 @@
 					<td>${answerViewResultVo.question.question_score}</td>
 					<td>${answerViewResultVo.question.answer}</td>
 					<td><input type="text" class="form-control" name="results[]" value="${answerViewResultVo.result}" readonly></td>
-					<td>${answerViewResultVo.score}</td>
+					<td><input type="text" class="form-control" name="scores[]" required></td>
 				</tr>
 			#{/list}
 		</tbody>

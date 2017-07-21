@@ -65,4 +65,11 @@ public class EnumUtil {
 		/** 已结参加 1 */
 		taked,
 	}
+	
+	public enum isMarked {
+		/** 没有批改  0*/
+		noMarked,
+		/** 已经批改 1*/
+		marked,
+	}
 }

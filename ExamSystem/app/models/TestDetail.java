@@ -24,9 +24,14 @@ public class TestDetail extends Model{
 	
 	/** student_id 在testRecord_id 中所得总分 */
 	public int totalScore;
-
+	
+	/** 标记位，确定该试卷考试是否参加考试  */
 	@Required
 	public int istaked;
+	
+	/** 标记位， 确定该试卷是否被老师阅卷 */
+	@Required
+	public int isMarked;
 	
 	public TestDetail() {
 	}
@@ -43,6 +48,14 @@ public class TestDetail extends Model{
 
 	public void setIstaked(int istaked) {
 		this.istaked = istaked;
+	}
+
+	public int getIsMarked() {
+		return isMarked;
+	}
+
+	public void setIsMarked(int isMarked) {
+		this.isMarked = isMarked;
 	}
 
 	public long getTestRecord_id() {

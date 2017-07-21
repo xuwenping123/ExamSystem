@@ -38,13 +38,24 @@ public class AnswerRecord extends Model{
 	 * @param result
 	 */
 	public AnswerRecord(long student_id, long paper_id, long testRecord_id, long question_id, String result) {
-		super();
 		this.student_id = student_id;
 		this.paper_id = paper_id;
 		this.testRecord_id = testRecord_id;
 		this.question_id = question_id;
 		this.result = result;
 	}
+	
+	public AnswerRecord(long student_id, long paper_id, long testRecord_id, long question_id, String result,
+			int score) {
+		this.student_id = student_id;
+		this.paper_id = paper_id;
+		this.testRecord_id = testRecord_id;
+		this.question_id = question_id;
+		this.result = result;
+		this.score = score;
+	}
+
+
 
 	public void setStudent_id(long student_id) {
 		this.student_id = student_id;

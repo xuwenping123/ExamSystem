@@ -1,0 +1,38 @@
+#{extends 'users/teacherButton.html' /}
+#{set title:'Home' /}
+#{set teacherButtontitle:'考试系统老师个人主页' /}
+
+<!-- 阅卷列表 -->
+
+<header class="page-header text-center">
+    <h1>考生已完成答卷</h1>
+</header>
+
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>试卷标题</th>
+			<th>考试开始时间</th>
+			<th>考试结束时间</th>
+			<th>考试试卷</th>
+			<th>参考学生</th>
+			<th>试卷总分</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:markingServiceListVOs, as:'markingServiceListVO'}
+			<tr>
+				<td>${markingServiceListVO.testRecord.remark}</td>
+				<td>${markingServiceListVO.testRecord.beginTime}</td>
+				<td>${markingServiceListVO.testRecord.endTime}</td>
+				<td>${markingServiceListVO.paper.remark}</td>
+				<td>${markingServiceListVO.student.name}</td>
+				<td>${markingServiceListVO.totalScore}</td>
+				<td>
+					<a class="btn btn-default" href="/MarkingController/go2MarkingPage?id=${markingServiceListVO.testRecord.id}&student_id=${markingServiceListVO.student.id}" role="button">进入阅卷</a>
+				</td>
+			</tr>
+		#{/list}
+	</tbody>
+</table>

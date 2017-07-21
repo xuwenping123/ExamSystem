@@ -12,6 +12,7 @@ import models.TestRecord;
 import models.user.Student;
 import models.user.Teacher;
 import models.vo.TestRecordVO;
+import play.Logger;
 import play.data.validation.Required;
 
 public class TestRecordService {
@@ -174,5 +175,16 @@ public class TestRecordService {
 	public Paper getPaperByTestRecordId(Long testRecord_id) {
 		TestRecord testRecord = TestRecord.findById(testRecord_id);
 		return Paper.findById(testRecord.getPaper_id());
+	}
+	
+	/**
+	 * 通过试卷查找testRecord记录
+	 * @param paper_id
+	 * @return
+	 */
+	public TestRecord getTestRecordByPaperId(Long paper_id) {
+		List<TestRecord> testRecords = TestRecord.find("paper_id = ?", paper_id).fetch();
+		Logger.info("通过Paper_id 查找到的TestRecord记录数共有  %s/t 条", testRecords.size());
+		return testRecords.get(0);
 	}
 }
