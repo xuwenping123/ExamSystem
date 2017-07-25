@@ -6,8 +6,10 @@ import models.Question;
 import models.vo.AnswerViewResultVo;
 import models.vo.StudentViewTestListVO;
 import play.mvc.Controller;
+import play.mvc.With;
 import service.StudentTestService;
 
+@With(InterceptorController.class)
 public class StudentTestController extends Controller {
 
 	/**

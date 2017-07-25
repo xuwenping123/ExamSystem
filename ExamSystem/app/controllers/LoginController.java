@@ -11,6 +11,7 @@ import models.TestRecord;
 import models.user.Student;
 import models.user.Teacher;
 import models.vo.TestInfo;
+import play.Logger;
 import play.mvc.Controller;
 /**
  * 控制登录模块
@@ -38,6 +39,7 @@ public class LoginController extends Controller {
 				session.put("loginType", "0");
 				session.put("teacher", teacher);
 				session.put("teacher_id", teacher.getId());
+				Logger.info("用户%s\t %s登录成功！", "teacher",teacher.name);
 				render("users/teacher.html", teacher);
 			}
 			renderArgs.put("message", "登录失败，用户名或密码错误！请重新登录");
@@ -49,6 +51,7 @@ public class LoginController extends Controller {
 				session.put("loginType", "1");
 				session.put("student", student);
 				session.put("student_id", student.getId());
+				Logger.info("用户 %s \t %s登录成功！", "student", student.name);
 				List<TestInfo> testInfos = getTestInfo2do(student.id);
 				List<TestInfo> testInfosDones = getTestInfodone(student.id);
 				render("users/student.html", student, testInfos, testInfosDones);
