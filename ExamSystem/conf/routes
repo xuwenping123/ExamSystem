@@ -3,7 +3,15 @@
 # ~~~~
 
 # Home page
-GET     /                                       Application.index
+GET     /                                       login.LoginController.go2IndexPage
+
+#Login
+POST	/login									login.LoginController.login
+GET		/logout									login.LoginController.logout
+
+#Registered
+GET		/registered.html    					login.RegisteredController.go2RegisteredPage
+POST	/registered								login.RegisteredController.registered
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
@@ -12,4 +20,4 @@ GET     /favicon.ico                            404
 GET     /public/                                staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+

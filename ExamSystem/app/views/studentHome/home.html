@@ -1,0 +1,42 @@
+#{extends 'homePageBar/studentButton.html' /}
+#{set title:'Home' /}
+#{set studentButtontitle:'考试系统考生个人主页' /}
+
+<!-- <p>您的登录类型是： ${session.loginType}</p> -->
+<p></p>
+	<table class="table table-hover">
+		<caption><h4>您的个人信息如下:<h4></caption>
+		<thead>
+			<tr>
+				<!-- <th>产品</th>
+				<th>付款日期</th> -->
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>您的登录类型是:</td>
+				<td>${session.loginType} <br>登录类型0表示教师， 1表示学生</td>
+			</tr>
+			<tr>
+				<td>id</td>
+				<td>${student.id}</td>
+			</tr>
+			<tr>
+				<td>name</td>
+				<td>${student.name}</td>
+			</tr>
+			<tr>
+				<td>age</td>
+				<td>${student.age}</td>
+			</tr>
+			<tr>
+				<td>username</td>
+				<td>${student.username}</td>
+			</tr>
+			<tr>
+				<td><a href="/StudentController/editStudent?id=${student.id}">编辑个人信息</a></td>
+				<td><a href="#">刷新</a></td>
+			</tr>
+		</tbody>
+	</table>
+<br/><br/>

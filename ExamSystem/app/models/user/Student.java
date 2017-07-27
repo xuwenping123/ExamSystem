@@ -50,5 +50,21 @@ public class Student extends Model{
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
 	
 }

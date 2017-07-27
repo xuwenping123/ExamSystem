@@ -9,7 +9,7 @@
 <header class="page-header text-center">
     <h1>用户登录页面</h1>
 </header>
-<form action="/LoginController/login" method="post">
+<form action="/login" method="post">
 	<div class="container">    
 	    <div class="form-horizontal">
 	        <div class="form-group">
@@ -41,14 +41,14 @@
 	
 	            </div>
 	            <div class="col-sm-10">
-	            <button class="btn btn-success" name="submit" value="0">注册</button>
+	            <a href="registered.html" class="btn btn-success">注册</a>
 	            <button class="btn btn-primary" name="submit" value="1">登录</button>
 	            </div>
 	        </div>
 	        #{if message != null}
 				<div class="alert alert-warning">
 				 <a href="#" class="close" data-dismiss="alert">&times;</a>
-			    	<h5><strong>警告！</strong>${message}</h5>
+			    	<h5><strong>${message}</strong></h5>
 				</div>
 			#{/if}
 	    </div>
