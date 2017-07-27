@@ -13,6 +13,29 @@ GET		/logout									login.LoginController.logout
 GET		/registered.html    					login.RegisteredController.go2RegisteredPage
 POST	/registered								login.RegisteredController.registered
 
+#teacher
+GET		/teacher/editTeacher.html				teacher.TeacherInfoController.go2EditTeacherPage
+POST	/teacher/editTeacherAction				teacher.TeacherInfoController.editTeacher					
+
+#subject
+GET		/teacher/subject/subjectList.html				teacher.SubjectMangerController.go2SubjectListPage
+GET		/teacher/subject/addSubject.html				teacher.SubjectMangerController.go2AddSubjectPage
+POST	/teacher/subject/addSubjectAction				teacher.SubjectMangerController.addSubject
+GET		/teacher/subject/editSubject.html				teacher.SubjectMangerController.go2EditSubjectPage
+POST	/teacher/subject/editSubjectAction				teacher.SubjectMangerController.editSubject
+GET		/teacher/subject/deleteSubjectAction			teacher.SubjectMangerController.deleteSubject
+GET		/teacher/subject/previousPage					teacher.SubjectMangerController.previousPage
+GET		/teacher/subject/nextPage						teacher.SubjectMangerController.nextPage
+GET		/teacher/subject/selectPage						teacher.SubjectMangerController.selectPage
+
+#question
+
+#student
+GET		/student/editStudent.html				student.StudentInfoController.go2EditStudentPage
+
+#test
+GET		/test									Application.index
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

@@ -1,0 +1,47 @@
+#{extends 'homePageBar/teacherButton.html' /}
+#{set teacherButtontitle:'科目管理页面' /}
+
+<table class="table table-hover">
+	<a href="/teacher/addSubject.html" class="btn btn-success">添加</a>
+	<thead>
+		<tr>
+			<th>科目标题</th>
+			<th>科目备注</th>
+			<th>科目启用</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:subjectListPageVO.subjects, as:'subject'}
+			<tr>
+				<td>${subject.title}</td>
+				<td>${subject.remark}</td>
+				<td>
+					#{if subject.status == 0}
+						启用
+					#{/if }
+					#{if subject.status == 1}
+						禁用
+					#{/if }
+				</td>
+				<td>
+					<a class="btn btn-default" href="/teacher/editSubject.html?id=${subject.id}" role="button">修改</a>
+					<a class="btn btn-default" href="/teacher/deleteSubjectAction?id=${subject.id}" role="button">删除</a>
+				</td>
+			</tr>
+		#{/list}
+	</tbody>
+</table>
+
+<ul class="pagination">
+    <li><a href="/teacher/previousPage?currentPage=${subjectListPageVO.currentPage}">&laquo;</a></li>
+  				   %{
+                        for(int i=0;i < subjectListPageVO.totalPage; i++){
+                    }%  
+                        <li><a href="/teacher/selectPage?selectPage=${i+1}">&nbsp;${i+1}&nbsp;</a></li>
+                    %{
+                        }
+                    }%
+    <li><a href="/teacher/nextPage?currentPage=${subjectListPageVO.currentPage}">&raquo;</a></li>
+</ul>
+                
