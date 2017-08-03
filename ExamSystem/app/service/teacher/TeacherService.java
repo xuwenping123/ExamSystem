@@ -1,5 +1,7 @@
 package service.teacher;
 
+import java.util.List;
+
 import models.user.Teacher;
 
 /**
@@ -26,6 +28,10 @@ public class TeacherService {
 	
 	public Teacher findTeacher(String username, String password) {
 		return Teacher.find("username = ? and password = ?", username, password).first();
+	}
+	
+	public List<Teacher> findAll() {
+		return Teacher.findAll();
 	}
 	
 	public Teacher findTeacher(Long id) {

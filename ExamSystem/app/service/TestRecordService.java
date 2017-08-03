@@ -71,7 +71,8 @@ public class TestRecordService {
 		TestRecord testRecord = saveTestRecord(beginTime, endTime, status, remark, paper_id);
 		TestDetail testDetail = null;
 		for (int i = 0; i < studentIds.length; i++) {
-			testDetail = new TestDetail(testRecord.getId(), teacher_id, studentIds[i]);
+//			this modify !
+//			testDetail = new TestDetail(testRecord.getId(), teacher_id, studentIds[i]);
 			testDetail.save();
 		}
 	}
@@ -117,7 +118,8 @@ public class TestRecordService {
 		TestRecord testRecord = modSaveTestRecord(id, remark, beginTime, endTime, status, paper_id);
 		TestDetail testDetail = null;
 		for (int i = 0; i < studentIds.length; i++) {
-			testDetail = new TestDetail(testRecord.getId(), teacher_id, studentIds[i]);
+//			this modify !
+//			testDetail = new TestDetail(testRecord.getId(), teacher_id, studentIds[i]);
 			testDetail.save();
 		}
 	}

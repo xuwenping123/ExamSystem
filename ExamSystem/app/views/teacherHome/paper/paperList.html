@@ -1,0 +1,40 @@
+#{extends 'homePageBar/teacherButton.html' /}
+#{set teacherButtontitle:'试卷管理页面' /}
+
+<table class="table table-hover">
+	<a href="/teacher/paper/addPaper.html" class="btn btn-success">添加</a>
+	<thead>
+		<tr>
+			<th>试卷标题</th>
+			<th>试卷科目</th>
+			<th>试卷总分</th>
+			<th>操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		#{list items:paperListPageVOs, as:'paperListPageVO'}
+			<tr>
+				<td>${paperListPageVO.remark}</td>
+				<td>${paperListPageVO.subject_title}</td>
+				<td>${paperListPageVO.totalScore}</td>				
+				<td>
+					<a class="btn btn-default" href="/teacher/paper/viewPaper.html?id=${paperListPageVO.paper_id}" role="button">查看</a>
+					<a class="btn btn-default" href="/teacher/paper/editPaper.html?id=${paperListPageVO.paper_id}" role="button">修改</a>
+					<a class="btn btn-default" href="/teacher/paper/deletePaperAction?id=${paperListPageVO.paper_id}" role="button">删除</a>
+				</td>
+			</tr>
+		#{/list}
+	</tbody>
+</table>
+
+<ul class="pagination">
+    <li><a href="/teacher/paper/previousPage?currentPage=${pageVO.currentPage}">&laquo;</a></li>
+  				   %{
+                        for(int i=0;i < pageVO.totalPage; i++){
+                    }%  
+                        <li><a href="/teacher/paper/selectPage?selectPage=${i+1}">&nbsp;${i+1}&nbsp;</a></li>
+                    %{
+                        }
+                    }%
+    <li><a href="/teacher/paper/nextPage?currentPage=${pageVO.currentPage}">&raquo;</a></li>
+</ul>

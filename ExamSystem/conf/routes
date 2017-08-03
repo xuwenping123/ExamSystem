@@ -29,9 +29,56 @@ GET		/teacher/subject/nextPage						teacher.SubjectMangerController.nextPage
 GET		/teacher/subject/selectPage						teacher.SubjectMangerController.selectPage
 
 #question
+GET		/teacher/question/questionList.html				teacher.QuestionManagerController.go2QuestionListPage
+GET		/teacher/question/addSubject.html				teacher.QuestionManagerController.go2AddQuestionPage
+POST	/teacher/question/addSubjectAction				teacher.QuestionManagerController.addQuestion
+GET		/teacher/question/editSubject.html				teacher.QuestionManagerController.go2EditQuestionPage
+POST	/teacher/question/editSubjectAction				teacher.QuestionManagerController.editQuestion
+GET		/teacher/question/deleteSubjectAction			teacher.QuestionManagerController.deleteQuestion
+GET		/teacher/question/previousPage					teacher.QuestionManagerController.previousPage
+GET		/teacher/question/nextPage						teacher.QuestionManagerController.nextPage
+GET		/teacher/question/selectPage					teacher.QuestionManagerController.selectPage
+
+#paper
+GET		/teacher/paper/paperList.html					teacher.PaperManagerController.go2PaperListPage
+GET		/teacher/paper/addPaper.html					teacher.PaperManagerController.go2AddPaperPage
+POST	/teacher/paper/addPaperAction					teacher.PaperManagerController.addPaper
+GET		/teacher/paper/editPaper.html					teacher.PaperManagerController.go2EditPaperPage
+POST	/teacher/paper/editPaperAction					teacher.PaperManagerController.editPaper
+GET		/teacher/paper/deletePaperAction				teacher.PaperManagerController.deletePaper
+GET		/teacher/paper/previousPage						teacher.PaperManagerController.previousPage
+GET		/teacher/paper/nextPage							teacher.PaperManagerController.nextPage
+GET		/teacher/paper/selectPage						teacher.PaperManagerController.selectPage
+GET		/teacher/paper/viewPaper.html					teacher.PaperManagerController.go2ViewPaperPage
+
+#test
+GET		/teacher/test/testList.html						teacher.TestManagerController.go2TestListPage
+GET		/teacher/test/addTest.html						teacher.TestManagerController.go2AddTestPage
+POST	/teacher/test/addTestAction						teacher.TestManagerController.addTest
+GET		/teacher/test/editTest.html						teacher.TestManagerController.go2EditTestPage
+POST	/teacher/test/editTestAction					teacher.TestManagerController.editTest
+GET		/teacher/test/deleteTestAction					teacher.TestManagerController.deleteTest
+GET		/teacher/test/previousPage						teacher.TestManagerController.previousPage
+GET		/teacher/test/nextPage							teacher.TestManagerController.nextPage
+GET		/teacher/test/selectPage						teacher.TestManagerController.selectPage
+GET		/teacher/test/viewTest.html						teacher.TestManagerController.go2ViewTestPage
+
+#mark
+GET		/teacher/mark/markList.html						teacher.MarkingManagerController.go2MarkListPage
+GET		/teacher/mark/marking.html						teacher.MarkingManagerController.go2MarkingPage
+POST	/teacher/mark/submitMarkingAction				teacher.MarkingManagerController.submitMarkingPage
 
 #student
-GET		/student/editStudent.html				student.StudentInfoController.go2EditStudentPage
+GET		/student/editStudent.html						student.StudentInfoController.go2EditStudentPage
+
+#take
+GET		/student/take/testList.html						student.TakeTestController.go2TakeTestListPage
+GET		/student/take/takeTest.html						student.TakeTestController.go2TakeTestPage
+POST	/student/take/submitTest.html					student.TakeTestController.submitTest
+
+#view
+GET		/student/view/testList.html						student.ViewTestController.go2ViewTestListPage
+GET		/student/view/viewTest.html						student.ViewTestController.go2ViewTestPage						
 
 #test
 GET		/test									Application.index
@@ -41,6 +88,3 @@ GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
-
-# Catch all
-

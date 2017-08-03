@@ -1,32 +1,38 @@
 #{extends 'homePageBar/teacherButton.html' /}
-#{set teacherButtontitle:'科目管理页面' /}
+#{set teacherButtontitle:'试题管理页面' /}
 
 <table class="table table-hover">
-	<a href="/teacher/addSubject.html" class="btn btn-success">添加</a>
+	<a href="/teacher/question/addSubject.html" class="btn btn-success">添加</a>
 	<thead>
 		<tr>
-			<th>科目标题</th>
-			<th>科目备注</th>
-			<th>科目启用</th>
+			<th>试题内容</th>
+			<th>试题答案</th>
+			<th>试题类型</th>
+			<th>试题科目</th>
 			<th>操作</th>
 		</tr>
 	</thead>
 	<tbody>
-		#{list items:subjectListPageVO.subjects, as:'subject'}
+		#{list items:questionListPageVO.questions, as:'question'}
 			<tr>
-				<td>${subject.title}</td>
-				<td>${subject.remark}</td>
+				<td>${question.content}</td>
+				<td>${question.answer}</td>
 				<td>
-					#{if subject.status == 0}
-						启用
-					#{/if }
-					#{if subject.status == 1}
-						禁用
-					#{/if }
+					#{if question.type == 0} 单选题  #{/if}
+					#{if question.type == 1} 多选题 #{/if}
+					#{if question.type == 2} 填空题  #{/if}
+					#{if question.type == 3} 问答题  #{/if}
 				</td>
 				<td>
-					<a class="btn btn-default" href="/teacher/editSubject.html?id=${subject.id}" role="button">修改</a>
-					<a class="btn btn-default" href="/teacher/deleteSubjectAction?id=${subject.id}" role="button">删除</a>
+				#{list items: subjects, as:'subject'}
+					#{if question.subject_id == subject.id}
+						${subject.title}
+					#{/if}
+				#{/list}		
+				</td>
+				<td>
+					<a class="btn btn-default" href="/teacher/question/editSubject.html?id=${question.id}" role="button">修改</a>
+					<a class="btn btn-default" href="/teacher/question/deleteSubjectAction?id=${question.id}" role="button">删除</a>
 				</td>
 			</tr>
 		#{/list}
@@ -34,14 +40,14 @@
 </table>
 
 <ul class="pagination">
-    <li><a href="/teacher/previousPage?currentPage=${subjectListPageVO.currentPage}">&laquo;</a></li>
+    <li><a href="/teacher/question/previousPage?currentPage=${questionListPageVO.currentPage}">&laquo;</a></li>
   				   %{
-                        for(int i=0;i < subjectListPageVO.totalPage; i++){
+                        for(int i=0;i < questionListPageVO.totalPage; i++){
                     }%  
-                        <li><a href="/teacher/selectPage?selectPage=${i+1}">&nbsp;${i+1}&nbsp;</a></li>
+                        <li><a href="/teacher/question/selectPage?selectPage=${i+1}">&nbsp;${i+1}&nbsp;</a></li>
                     %{
                         }
                     }%
-    <li><a href="/teacher/nextPage?currentPage=${subjectListPageVO.currentPage}">&raquo;</a></li>
+    <li><a href="/teacher/question/nextPage?currentPage=${questionListPageVO.currentPage}">&raquo;</a></li>
 </ul>
                 

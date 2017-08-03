@@ -64,6 +64,7 @@ public class SubjectMangerController extends Controller {
 	 */
 	public static void go2EditSubjectPage(Long id) {
 		renderArgs.put("subject", SubjectManagerService.getInstance().findSubject(id));
+		renderArgs.put("pageTitle", "科目修改");
 		renderTemplate("teacherHome/subject/subject.html");
 	}
 	
@@ -137,4 +138,5 @@ public class SubjectMangerController extends Controller {
 		renderArgs.put("subjectListPageVO", subjectListPageVO);
 		renderTemplate("teacherHome/subject/subjectList.html");
 	}
+	
 }

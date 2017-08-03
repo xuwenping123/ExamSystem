@@ -73,5 +73,13 @@ public class EnumUtil {
 		marked,
 	}
 	
+	public enum currentPageStatus{
+		/** -- */
+		negative,
+		/** == */
+		unchanged,
+		/** ++ */
+		positive,
+	}
 }
 

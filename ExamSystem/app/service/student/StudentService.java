@@ -1,5 +1,7 @@
 package service.student;
 
+import java.util.List;
+
 import models.user.Student;
 
 /**
@@ -22,6 +24,10 @@ public class StudentService {
 		Student student = new Student(name, age, username, password);
 		student.save();
 		return student;
+	}
+	
+	public List<Student> findAll() {
+		return Student.findAll();
 	}
 	
 	public Student findStudent(String username, String password) {

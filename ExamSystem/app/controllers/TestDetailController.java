@@ -25,9 +25,10 @@ public class TestDetailController extends Controller{
 	 */
 	public static void addTestDetail(long testRecord_id, long teacher_id, 
 			long student_id) {
-		TestDetail testDetail = new TestDetail(testRecord_id, teacher_id, student_id);
+		// this is modify !!!
+		/*TestDetail testDetail = new TestDetail(testRecord_id, teacher_id, student_id);
 		testDetail.save();
-		renderArgs.put("testDetail", testDetail);
+		renderArgs.put("testDetail", testDetail);*/
 		render("testDetail/testDetail.html");
 	}
 	

@@ -32,14 +32,13 @@ public class TestDetail extends Model{
 	/** 标记位， 确定该试卷是否被老师阅卷 */
 	@Required
 	public int isMarked;
-	
-	public TestDetail() {
-	}
 
-	public TestDetail(long testRecord_id, long teacher_id, long student_id) {
+	public TestDetail(long testRecord_id, long teacher_id, long student_id, int istaked, int isMarked) {
 		this.testRecord_id = testRecord_id;
 		this.teacher_id = teacher_id;
 		this.student_id = student_id;
+		this.istaked = istaked;
+		this.isMarked = isMarked;
 	}
 
 	public int getIstaked() {

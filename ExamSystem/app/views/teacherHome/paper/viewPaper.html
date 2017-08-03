@@ -1,0 +1,83 @@
+#{extends 'users/teacherButton.html' /}
+#{set teacherButtontitle:'试卷管理主页' /}
+
+<header class="page-header text-center">
+    <h1>${pageTitle}</h1>
+</header>
+
+
+<form action="/teacher/paper/paperList.html" method="GET">
+<div class="container">    
+	    <div class="form-horizontal">
+	    	
+	    	<div class="form-group">
+	            <label class="col-sm-2 control-label">Id</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="id" value="${paperViewVO.paper_id}" readonly> 
+	            </div>
+	        </div>
+	    	
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">试卷标题</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="remark" value="${paperViewVO.remark}" readonly>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">试卷科目</label>
+	            <div class="col-sm-10">
+	                <select class="form-control" name="subject_id" readonly>
+							<option value="${paperViewVO.subject.id}">${paperViewVO.subject.title} </option>
+					</select>
+	            </div>
+	        </div>
+
+
+			<table class="table table-hover">
+				<a href="#" class="btn btn-success">添加试题至试卷中</a>
+				<thead>
+					<tr>
+						<th>选择</th>
+						<th>试题内容</th>
+						<th>试题答案</th>
+						<th>试题类型</th>
+						<th>试题科目</th>
+						<th>分数</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:paperViewVO.questions, as:'question'}
+					<tr>
+						<td>
+							<div class="checkbox">
+							   <label><input type="checkbox" name="selectQuestions[]" value="${question.id}" checked="checked" readonly></label>
+							</div>
+						</td>
+						<td>${question.content}</td>
+						<td>${question.answer}</td>
+						<td>
+							#{if question.type == 0} 单选题 #{/if} 
+							#{if question.type == 1} 多选题 #{/if} 
+							#{if question.type == 2} 填空题 #{/if} 
+							#{if question.type == 3} 问答题 #{/if}
+						</td>
+						<td>${question.subject_id}</td>
+						<td><input type="text" class="form-control" name="question_score[]" value="${question.question_score}" readonly></td>
+					</tr>
+					#{/list}
+				</tbody>
+			</table>
+			
+			 <div class="form-group">
+	            <div class="col-sm-2">
+	            </div>
+	            <div class="col-sm-10">
+	            <button class="btn btn-primary">返回</button>
+	            </div>
+	        </div>
+			
+		</div>
+	</div>
+</form> 
+

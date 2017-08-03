@@ -1,0 +1,263 @@
+#{extends 'homePageBar/teacherButton.html' /}
+#{set teacherButtontitle:'考试管理页面' /}
+
+<header class="page-header text-center">
+    <h1>${pageTitle}</h1>
+</header>
+
+
+#{if testPageVO.testRecord_id != 0 }
+<form action="/teacher/test/editTestAction" method="post">
+<div class="container">    
+	    <div class="form-horizontal">
+	    	<div class="form-group">
+	            <label class="col-sm-2 control-label">Id</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="id" value="${testPageVO.testRecord_id}" readonly> 
+	            </div>
+	        </div>
+	    
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试标题</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="remark" value="${testPageVO.remark}" required>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试开始时间</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="beginTime"  value="${testPageVO.beginTime}" required>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试结束时间</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="endTime" value="${testPageVO.endTime}" required>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试状态</label>
+	            <div class="col-sm-10">
+	                <select class="form-control" name="status">
+	                	#{if testPageVO.status == 0}
+							<option value="0" checked="checked">启用</option>
+							<option value="1">禁用 </option>
+						#{/ if}
+						#{if testPageVO.status == 1}
+							<option value="0" >启用</option>
+							<option value="1" checked="checked">禁用 </option>
+						#{/ if}
+					</select>
+	            </div>
+	        </div>
+	        
+	        
+	        
+	        <table class="table table-hover">
+				<a href="#" class="btn btn-success">添加试卷</a>
+				<thead>
+					<tr>
+						<th>选择</th>
+						<th>试卷标题</th>
+						<th>试题科目</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:testPageVO.papers, as:'paper'}
+					<tr>
+						<td>
+							<div class="checkbox">
+							   <label><input type="radio" name="paper_id" value="${paper.id}"></label>
+							</div>
+						</td>
+						<td>${paper.remark}</td>
+						<td>${paper.subject_id}</td>
+					</tr>
+					#{/list}
+				</tbody>
+			</table>
+			
+			<table class="table table-hover">
+				<a href="#" class="btn btn-success">添加阅卷人</a>
+				<thead>
+					<tr>
+						<th>选择</th>
+						<th>老师姓名</th>
+						<th>老师使用名</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:testPageVO.teachers, as:'teacher'}
+					<tr>
+						<td>
+							<div class="checkbox">
+							   <label><input type="radio" name="teacher_id" value="${teacher.id}"></label>
+							</div>
+						</td>
+						<td>${teacher.name}</td>
+						<td>${teacher.username}</td>
+					</tr>
+					#{/list}
+				</tbody>
+			</table>
+			
+			<table class="table table-hover">
+				<a href="#" class="btn btn-success">添加考生</a>
+				<thead>
+					<tr>
+						<th>选择</th>
+						<th>学生姓名</th>
+						<th>学生使用名</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:testPageVO.students, as:'student'}
+					<tr>
+						<td>
+							<div class="checkbox">
+							   <label><input type="checkbox" name="studentIds[]" value="${student.id}"></label>
+							</div>
+						</td>
+						<td>${student.name}</td>
+						<td>${student.username}</td>
+					</tr>
+					#{/list}
+				</tbody>
+			</table>
+	        
+	        <div class="form-group">
+	            <div class="col-sm-2">
+	
+	            </div>
+	            <div class="col-sm-10">
+	            <button class="btn btn-primary">确定</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</form> 
+#{/ if}
+
+
+#{if testPageVO.testRecord_id == 0}
+<form action="/teacher/test/addTestAction" method="post">
+<div class="container">    
+	    <div class="form-horizontal">
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试标题</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="remark"  required>
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试开始时间</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="beginTime"  >
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试结束时间</label>
+	            <div class="col-sm-10">
+	                <input type="text" class="form-control" name="endTime"  >
+	            </div>
+	        </div>
+	        
+	        <div class="form-group">
+	            <label class="col-sm-2 control-label">考试状态</label>
+	            <div class="col-sm-10">
+	                <select class="form-control" name="status">
+						<option value="0">启用</option>
+						<option value="1">禁用 </option>
+					</select>
+	            </div>
+	        </div>
+	        
+	        <table class="table table-hover">
+				<a href="#" class="btn btn-success">添加试卷</a>
+				<thead>
+					<tr>
+						<th>选择</th>
+						<th>试卷标题</th>
+						<th>试题科目</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:testPageVO.papers, as:'paper'}
+					<tr>
+						<td>
+							<div class="checkbox">
+							   <label><input type="radio" name="paper_id" value="${paper.id}"></label>
+							</div>
+						</td>
+						<td>${paper.remark}</td>
+						<td>${paper.subject_id}</td>
+					</tr>
+					#{/list}
+				</tbody>
+			</table>
+			
+			<table class="table table-hover">
+				<a href="#" class="btn btn-success">添加阅卷人</a>
+				<thead>
+					<tr>
+						<th>选择</th>
+						<th>老师姓名</th>
+						<th>老师使用名</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:testPageVO.teachers, as:'teacher'}
+					<tr>
+						<td>
+							<div class="checkbox">
+							   <label><input type="radio" name="teacher_id" value="${teacher.id}"></label>
+							</div>
+						</td>
+						<td>${teacher.name}</td>
+						<td>${teacher.username}</td>
+					</tr>
+					#{/list}
+				</tbody>
+			</table>
+			
+			<table class="table table-hover">
+				<a href="#" class="btn btn-success">添加考生</a>
+				<thead>
+					<tr>
+						<th>选择</th>
+						<th>学生姓名</th>
+						<th>学生使用名</th>
+					</tr>
+				</thead>
+				<tbody>
+					#{list items:testPageVO.students, as:'student'}
+					<tr>
+						<td>
+							<div class="checkbox">
+							   <label><input type="checkbox" name="studentIds[]" value="${student.id}"></label>
+							</div>
+						</td>
+						<td>${student.name}</td>
+						<td>${student.username}</td>
+					</tr>
+					#{/list}
+				</tbody>
+			</table>
+	        
+	        <div class="form-group">
+	            <div class="col-sm-2">
+	
+	            </div>
+	            <div class="col-sm-10">
+	            <button class="btn btn-primary">确定</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</form> 
+#{/ if}

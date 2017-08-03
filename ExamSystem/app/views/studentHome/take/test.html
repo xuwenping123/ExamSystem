@@ -1,0 +1,46 @@
+#{extends 'homePageBar/studentButton.html' /}
+#{set title:'Home' /}
+#{set studentButtontitle:'考试系统考生个人主页' /}
+
+<header class="page-header text-center">
+    <h1>${pageTitle}</h1>
+</header>
+
+<form action="/student/take/submitTest.html" method="post">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>试题内容</th>
+				<th>试题类型</th>
+				<th>试题满分</th>
+				<th>填写结果</th>
+			</tr>
+		</thead>
+		<tbody>
+			#{list items:takeTestPageVO.questions, as:'question'}
+				<tr>
+					<td>${question.content}</td>
+					<td>
+						#{if question.type == 0} 单选题  #{/if}
+						#{if question.type == 1} 多选题 #{/if}
+						#{if question.type == 2} 填空题  #{/if}
+						#{if question.type == 3} 问答题  #{/if}
+					</td>
+					<td>${question.question_score}</td>
+					<td>
+						<td><input type="text" class="form-control" name="results[]" required></td>
+					</td>
+				</tr>
+			#{/list}
+		</tbody>
+	</table>
+	<input type="hidden" class="form-control" name="student_id" value="${takeTestPageVO.student_id}">
+	<input type="hidden" class="form-control" name="testRecord_id" value="${takeTestPageVO.testRecord_id}">
+	<div class="form-group">
+	            <div class="col-sm-2">
+	            </div>
+	            <div class="col-sm-10">
+	            	<button class="btn btn-primary">确定</button>
+	            </div>
+	</div>
+</form>

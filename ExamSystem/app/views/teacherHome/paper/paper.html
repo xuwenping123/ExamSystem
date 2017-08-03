@@ -7,21 +7,21 @@
 
 
 #{if paper != null}
-<form action="/PaperController/modifyPaper" method="post">
+<form action="/teacher/paper/editPaperAction" method="post">
 <div class="container">    
 	    <div class="form-horizontal">
 	    	
 	    	<div class="form-group">
 	            <label class="col-sm-2 control-label">Id</label>
 	            <div class="col-sm-10">
-	                <input type="text" class="form-control" name="id" value="${paper.id}" readonly> 
+	                <input type="text" class="form-control" name="id" value="${paperPageVO.paper_id}" readonly> 
 	            </div>
 	        </div>
 	    	
 	        <div class="form-group">
 	            <label class="col-sm-2 control-label">试卷标题</label>
 	            <div class="col-sm-10">
-	                <input type="text" class="form-control" name="remark" value="${paper.remark}" required>
+	                <input type="text" class="form-control" name="remark" value="${paperPageVO.remark}" required>
 	            </div>
 	        </div>
 	        
@@ -29,7 +29,7 @@
 	            <label class="col-sm-2 control-label">试卷科目</label>
 	            <div class="col-sm-10">
 	                <select class="form-control" name="subject_id" >
-						#{list items:subjects, as:'subject'}
+						#{list items:paperPageVO.subjects, as:'subject'}
 							<option value="${subject.id}">${subject.title} </option>
 						#{/list}
 					</select>
@@ -50,7 +50,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					#{list items:questions, as:'question'}
+					#{list items:paperPageVO.questions, as:'question'}
 					<tr>
 						<td>
 							<div class="checkbox">
@@ -66,7 +66,7 @@
 							#{if question.type == 3} 问答题 #{/if}
 						</td>
 						<td>${question.subject_id}</td>
-						<td><input type="text" class="form-control" name="question_score[]" value="${question.question_score}"></td>
+						<td><input type="text" class="form-control" name="question_scores[]" value="${question.question_score}"></td>
 					</tr>
 					#{/list}
 				</tbody>
@@ -87,7 +87,7 @@
 
 
 #{if paper == null}
-<form action="/PaperController/addPaper" method="post">
+<form action="/teacher/paper/addPaperAction" method="post">
 <div class="container">    
 	    <div class="form-horizontal">
 	        <div class="form-group">
@@ -101,7 +101,7 @@
 	            <label class="col-sm-2 control-label">试卷科目</label>
 	            <div class="col-sm-10">
 	                <select class="form-control" name="subject_id" >
-						#{list items:subjects, as:'subject'}
+						#{list items:paperPageVO.subjects, as:'subject'}
 							<option value="${subject.id}">${subject.title} </option>
 						#{/list}
 					</select>
@@ -122,7 +122,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					#{list items:questions, as:'question'}
+					#{list items:paperPageVO.questions, as:'question'}
 					<tr>
 						<td>
 							<div class="checkbox">
@@ -138,7 +138,7 @@
 							#{if question.type == 3} 问答题 #{/if}
 						</td>
 						<td>${question.subject_id}</td>
-						<td><input type="text" class="form-control" name="question_score[]"></td>
+						<td><input type="text" class="form-control" name="question_scores[]"></td>
 					</tr>
 					#{/list}
 				</tbody>

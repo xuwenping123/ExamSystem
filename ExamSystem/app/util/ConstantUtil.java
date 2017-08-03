@@ -11,4 +11,7 @@ public class ConstantUtil {
 
 	/** 分页页数 */
 	public final static int perPage = 5;
+	
+	/** 日期标准格式 */
+	public final static String dateFormat = "yyyy:MM:dd HH:mm:ss";
 }
